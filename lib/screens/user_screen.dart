@@ -36,7 +36,7 @@ class UserScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(50, 40),
+                        fixedSize: const Size(50, 50),
                         primary: dumncVerde,
                       ),
                       child: Icon(Icons.download),
@@ -48,10 +48,11 @@ class UserScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 300,
-                  height: 40,
+                  height: 50,
                   child: TextField(
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
+                      hintText: 'Buscar por nombre',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -66,7 +67,7 @@ class UserScreen extends StatelessWidget {
                     _showCupertinoDialog(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(150, 40),
+                    fixedSize: const Size(150, 50),
                     primary: dumncVerde,
                   ),
                   child: Text('Nuevo usuario'),
