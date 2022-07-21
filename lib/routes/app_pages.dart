@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import 'app_routes.dart';
 
-class AppPAges {
+class AppPages {
   static final List<GetPage> pages = [
     GetPage(
       name: AppRoutes.LAYOUT,
