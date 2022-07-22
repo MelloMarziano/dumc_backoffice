@@ -78,7 +78,7 @@ class UserScreen extends StatelessWidget {
               height: 20,
             ),
             Container(
-              height: 700,
+              height: 600,
               //decoration: BoxDecoration(border: Border.all()),
               child: const DataTableWidget(
                 titleTable: [
@@ -103,6 +103,7 @@ class UserScreen extends StatelessWidget {
           return AlertDialog(
             //title: Text('Cupertino Dialog'),
             content: Container(
+              width: MediaQuery.of(context).size.width * 0.5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +148,7 @@ class UserScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 500,
+                    width: double.infinity,
                     height: 50,
                     child: TextField(
                       decoration: InputDecoration(
@@ -169,16 +170,85 @@ class UserScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 500,
-                    height: 50,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
+                  Container(
+                    padding: EdgeInsets.all(16),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
                       ),
+                      borderRadius: BorderRadius.circular(5),
                     ),
+                    child: Wrap(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: dumncDoradoOscuro,
+                            ),
+                            child: Text(
+                              'ZONA 6',
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Administrador',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          CupertinoSwitch(
+                            value: true,
+                            onChanged: (value) {},
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Activo',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          CupertinoSwitch(
+                            value: true,
+                            onChanged: (value) {},
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 30,

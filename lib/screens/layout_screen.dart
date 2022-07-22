@@ -102,11 +102,15 @@ class LayoutScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Center(
-                  child: FadeInLeft(
-                    manualTrigger: true,
-                    controller: (controller) => animateController = controller,
-                    child: _.pageToShow,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Center(
+                    child: FadeInLeft(
+                      manualTrigger: true,
+                      controller: (controller) =>
+                          animateController = controller,
+                      child: _.pageToShow,
+                    ),
                   ),
                 ),
               ),
