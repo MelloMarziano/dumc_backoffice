@@ -64,7 +64,7 @@ class UserScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    _showCupertinoDialog(context);
+                    _showCupertinoDialog(context, _);
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(150, 50),
@@ -96,7 +96,7 @@ class UserScreen extends StatelessWidget {
     );
   }
 
-  void _showCupertinoDialog(BuildContext context) {
+  void _showCupertinoDialog(BuildContext context, controller) {
     showDialog(
         context: context,
         builder: (context) {
@@ -155,6 +155,43 @@ class UserScreen extends StatelessWidget {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Fecha de nacimiento',
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: TextField(
+                      controller: controller.txtDatePicker,
+                      onTap: () async {
+                        final DateTime? picked = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1970, 8),
+                          lastDate: DateTime(2101),
+                        );
+                        if (picked != null) {
+                          controller.writeInputDatePicker(picked);
+                        }
+                      },
+                      decoration: InputDecoration(
+                        hintText: DateTime.now().toIso8601String(),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        suffixIcon: Icon(Icons.calendar_month),
                       ),
                     ),
                   ),
