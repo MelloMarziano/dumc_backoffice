@@ -23,6 +23,7 @@ class LayoutScreen extends StatelessWidget {
       builder: (_) => Scaffold(
         body: Container(
           child: CollapsibleSidebar(
+            toggleTitle: 'Cerrar',
             isCollapsed: true,
             items: [
               CollapsibleItem(

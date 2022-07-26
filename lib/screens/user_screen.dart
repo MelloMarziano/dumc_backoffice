@@ -3,6 +3,7 @@ import 'package:dumc_backoffice/controllers/user_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
 import 'package:dumc_backoffice/widgets/datatable.dart';
+import 'package:dumc_backoffice/widgets/new_user_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -96,214 +97,33 @@ class UserScreen extends StatelessWidget {
     );
   }
 
-  void _showCupertinoDialog(BuildContext context, controller) {
+  Future<void> _showCupertinoDialog(BuildContext context, controller) async {
+    // List of items in our dropdown menu
+    var rango = [
+      'Amigo',
+      'Compañero',
+      'Explorador',
+      'Orientador',
+      'Viajero',
+      'Guia',
+      'Guia Mayor',
+    ];
+
+    var zona = [
+      'Zona 1',
+      'Zona 2',
+      'Zona 3',
+      'Zona 4',
+      'Zona 5',
+      'Zona 6',
+      'Zona 7',
+      'Zona 8',
+      'Zona 9',
+    ];
     showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            //title: Text('Cupertino Dialog'),
-            content: Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Crear usuario nuevo',
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: const Icon(
-                          Icons.cancel,
-                          color: Colors.redAccent,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Divider(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    'Nombre',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Fecha de nacimiento',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: TextField(
-                      controller: controller.txtDatePicker,
-                      onTap: () async {
-                        final DateTime? picked = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1970, 8),
-                          lastDate: DateTime(2101),
-                        );
-                        if (picked != null) {
-                          controller.writeInputDatePicker(picked);
-                        }
-                      },
-                      decoration: InputDecoration(
-                        hintText: DateTime.now().toIso8601String(),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        suffixIcon: Icon(Icons.calendar_month),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Zona',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(16),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Wrap(
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            padding: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: dumncDoradoOscuro,
-                            ),
-                            child: Text(
-                              'ZONA 6',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Administrador',
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          CupertinoSwitch(
-                            value: true,
-                            onChanged: (value) {},
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Activo',
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ),
-                          CupertinoSwitch(
-                            value: true,
-                            onChanged: (value) {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(150, 50),
-                        primary: dumncVerde,
-                      ),
-                      child: Text('Guardar'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return UserCreateModal();
         });
   }
 }
