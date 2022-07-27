@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:dumc_backoffice/controllers/layout_controller.dart';
+import 'package:dumc_backoffice/screens/clubs_screen.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
 import 'package:dumc_backoffice/screens/quiz_screen.dart';
 import 'package:dumc_backoffice/screens/user_screen.dart';
@@ -60,7 +61,11 @@ class LayoutScreen extends StatelessWidget {
               CollapsibleItem(
                 text: 'Clubes',
                 icon: Icons.groups,
-                onPressed: () {},
+                onPressed: () {
+                  _.changeSelected('selectClub');
+                  animateController.reset();
+                  _.changeView(ClubsScreen());
+                },
                 isSelected: _.selectedItem['selectClub']!,
               ),
               CollapsibleItem(

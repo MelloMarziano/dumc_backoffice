@@ -34,7 +34,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                     width: 42,
                     height: 42,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(

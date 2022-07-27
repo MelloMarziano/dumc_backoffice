@@ -1,3 +1,4 @@
+import 'package:dumc_backoffice/controllers/clubs_controller.dart';
 import 'package:dumc_backoffice/controllers/user_controller.dart';
 import 'package:dumc_backoffice/controllers/zona_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
@@ -13,9 +14,21 @@ class ClubCreateModal extends StatefulWidget {
 }
 
 class _ClubCreateModalState extends State<ClubCreateModal> {
+  var zona = [
+    'Zona 1',
+    'Zona 2',
+    'Zona 3',
+    'Zona 4',
+    'Zona 5',
+    'Zona 6',
+    'Zona 7',
+    'Zona 8',
+    'Zona 9',
+  ];
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ZonaController>(
+    return GetBuilder<ClubsController>(
+      init: ClubsController(),
       builder: (controller) => AlertDialog(
         //title: Text('Cupertino Dialog'),
         content: Container(
@@ -64,7 +77,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 height: 30,
               ),
               Text(
-                'Division',
+                'Zona',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Colors.black,
@@ -72,15 +85,50 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: TextField(
-                  controller: controller.txtDivision,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              const SizedBox(
+                height: 5,
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Color.fromRGBO(
+                        0,
+                        0,
+                        0,
+                        0.57,
+                      ), //shadow for button
+                      blurRadius: 2,
+                    ) //blur radius of shadow
+                  ],
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: 5,
+                    left: 10,
+                  ),
+                  child: DropdownButton(
+                    // Initial Value
+                    value: controller.dropdownvalueZona.toString(),
+                    isExpanded: true, //make true to take width of parent widget
+                    underline: Container(),
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: zona.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      controller.changeZona(newValue!);
+                    },
                   ),
                 ),
               ),
@@ -88,7 +136,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 height: 20,
               ),
               Text(
-                'Nombre',
+                'Nombre del club',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Colors.black,
@@ -112,7 +160,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 height: 20,
               ),
               Text(
-                'Nombre cordinador',
+                'Director',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Colors.black,
@@ -124,7 +172,31 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 width: double.infinity,
                 height: 50,
                 child: TextField(
-                  controller: controller.txtCordinador,
+                  controller: controller.txtDirector,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Cantidad de miembros',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: TextField(
+                  controller: controller.txtMiembros,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -139,8 +211,8 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (controller.txtNombre.text.isNotEmpty &&
-                        controller.txtDivision.text.isNotEmpty &&
-                        controller.txtCordinador.text.isNotEmpty) {
+                        controller.txtDirector.text.isNotEmpty &&
+                        controller.txtMiembros.text.isNotEmpty) {
                       Get.snackbar(
                         'Confirm',
                         'Zona creada correctamente',

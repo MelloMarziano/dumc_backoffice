@@ -1,3 +1,4 @@
+import 'package:dumc_backoffice/controllers/clubs_controller.dart';
 import 'package:dumc_backoffice/controllers/zona_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
@@ -10,8 +11,8 @@ import 'package:get/get.dart';
 class ClubsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ZonaController>(
-      init: ZonaController(),
+    return GetBuilder<ClubsController>(
+      init: ClubsController(),
       builder: (_) => Container(
         padding: EdgeInsets.only(
           left: 20,
