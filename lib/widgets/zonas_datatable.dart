@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DataTableWidget extends StatelessWidget {
+class ZonaDataTableWidget extends StatelessWidget {
   final List<String> titleTable;
 
-  const DataTableWidget({super.key, required this.titleTable});
+  const ZonaDataTableWidget({super.key, required this.titleTable});
 
   @override
   Widget build(BuildContext context) {
@@ -43,48 +43,9 @@ class DataTableWidget extends StatelessWidget {
         10,
         (index) => DataRow(
           cells: [
+            DataCell(Text('Cambita')),
             DataCell(Text('Zona 6')),
             DataCell(Text('Eliu Ortega')),
-            DataCell(Text('Guia Mayor')),
-            DataCell(
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(70, 20),
-                  primary: Colors.red,
-                ),
-                child: Text('Editar'),
-              ),
-            ),
-            const DataCell(
-              CupertinoSwitch(
-                value: true,
-                onChanged: null,
-              ),
-            ),
-            DataCell(Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    //fixedSize: const Size(150, 40),
-                    primary: dumncDoradoClaro,
-                  ),
-                  child: Icon(Icons.edit),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    //fixedSize: const Size(150, 40),
-                    primary: Colors.red,
-                  ),
-                  child: Icon(Icons.delete),
-                ),
-              ],
-            ))
           ],
         ),
       ),

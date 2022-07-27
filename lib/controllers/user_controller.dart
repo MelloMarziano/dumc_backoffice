@@ -8,8 +8,15 @@ class UserController extends GetxController {
   var dropdownvalueZona = 'Zona 1';
   var txtDatePicker = TextEditingController();
   var txtNombre = TextEditingController();
+  var txtPassword = TextEditingController();
   var isAdmin = false;
   var isActive = false;
+  var noShowPasswordLogin = false;
+
+  showPassword() {
+    noShowPasswordLogin = !noShowPasswordLogin;
+    update();
+  }
 
   writeInputDatePicker(DateTime date) {
     txtDatePicker.text = formatDate.format(date).toString();

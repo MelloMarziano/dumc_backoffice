@@ -4,6 +4,7 @@ import 'package:dumc_backoffice/controllers/layout_controller.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
 import 'package:dumc_backoffice/screens/quiz_screen.dart';
 import 'package:dumc_backoffice/screens/user_screen.dart';
+import 'package:dumc_backoffice/screens/zonas_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -49,7 +50,11 @@ class LayoutScreen extends StatelessWidget {
               CollapsibleItem(
                 text: 'Zonas',
                 icon: Icons.map,
-                onPressed: () {},
+                onPressed: () {
+                  _.changeSelected('selectZone');
+                  animateController.reset();
+                  _.changeView(ZonaScreen());
+                },
                 isSelected: _.selectedItem['selectZone']!,
               ),
               CollapsibleItem(

@@ -1,22 +1,16 @@
-import 'package:data_table_2/data_table_2.dart';
-import 'package:dumc_backoffice/controllers/user_controller.dart';
+import 'package:dumc_backoffice/controllers/zona_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
-import 'package:dumc_backoffice/widgets/datatable.dart';
-import 'package:dumc_backoffice/widgets/new_user_modal.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dumc_backoffice/widgets/new_zona_modal.dart';
+import 'package:dumc_backoffice/widgets/zonas_datatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class UserScreen extends StatelessWidget {
-  const UserScreen({Key? key}) : super(key: key);
-
+class ZonaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UserController>(
-      init: UserController(),
+    return GetBuilder<ZonaController>(
+      init: ZonaController(),
       builder: (_) => Container(
         padding: EdgeInsets.only(
           left: 20,
@@ -25,7 +19,7 @@ class UserScreen extends StatelessWidget {
         child: Column(
           children: [
             const AppBarWidget(
-              title: 'Usuarios',
+              title: 'Zonas',
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -33,7 +27,7 @@ class UserScreen extends StatelessWidget {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: Tooltip(
-                    message: 'Descargar listado de miembros del DUMC',
+                    message: 'Descargar listado de zonas',
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -71,7 +65,7 @@ class UserScreen extends StatelessWidget {
                     fixedSize: const Size(150, 50),
                     primary: dumncVerde,
                   ),
-                  child: Text('Nuevo usuario'),
+                  child: Text('Nueva zona'),
                 ),
               ],
             ),
@@ -81,14 +75,11 @@ class UserScreen extends StatelessWidget {
             Container(
               height: 600,
               //decoration: BoxDecoration(border: Border.all()),
-              child: const DataTableWidget(
+              child: const ZonaDataTableWidget(
                 titleTable: [
-                  'Zona',
+                  'Division',
                   'Nombre',
-                  'Rango',
-                  'Admin',
-                  'Activo',
-                  'Action',
+                  'Cordinador',
                 ],
               ),
             )
@@ -103,7 +94,7 @@ class UserScreen extends StatelessWidget {
     showDialog(
         context: context,
         builder: (context) {
-          return UserCreateModal();
+          return ZonaCreateModal();
         });
   }
 }

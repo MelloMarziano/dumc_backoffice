@@ -54,6 +54,9 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     width: 42,
                     height: 42,
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Text(
                     'Crear usuario nuevo',
                     style: GoogleFonts.poppins(
@@ -93,6 +96,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 width: double.infinity,
                 height: 50,
                 child: TextField(
+                  controller: controller.txtNombre,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -129,9 +133,6 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     }
                   },
                   decoration: InputDecoration(
-                    hintText: controller.formatDate.format(
-                      DateTime.now(),
-                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -140,10 +141,153 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              Container(
+                width: double.infinity,
+                height: 80,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Zona',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    0.57,
+                                  ), //shadow for button
+                                  blurRadius: 2,
+                                ) //blur radius of shadow
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                right: 5,
+                                left: 10,
+                              ),
+                              child: DropdownButton(
+                                // Initial Value
+                                value: controller.dropdownvalueZona.toString(),
+                                isExpanded:
+                                    true, //make true to take width of parent widget
+                                underline: Container(),
+                                // Down Arrow Icon
+                                icon: const Icon(Icons.keyboard_arrow_down),
+
+                                // Array list of items
+                                items: zona.map((String items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(items),
+                                  );
+                                }).toList(),
+                                // After selecting the desired option,it will
+                                // change button value to selected value
+                                onChanged: (String? newValue) {
+                                  controller.changeZona(newValue!);
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Rango',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    0.57,
+                                  ), //shadow for button
+                                  blurRadius: 2,
+                                ) //blur radius of shadow
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                right: 5,
+                                left: 10,
+                              ),
+                              child: DropdownButton(
+                                // Initial Value
+                                value: controller.dropdownvalue.toString(),
+                                isExpanded: true,
+                                underline: Container(),
+                                // Down Arrow Icon
+                                icon: const Icon(Icons.keyboard_arrow_down),
+
+                                // Array list of items
+                                items: rango.map((String items) {
+                                  return DropdownMenuItem(
+                                    value: items,
+                                    child: Text(items),
+                                  );
+                                }).toList(),
+                                // After selecting the desired option,it will
+                                // change button value to selected value
+                                onChanged: (String? newValue) async {
+                                  await controller.changeRango(newValue!);
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               Text(
-                'Rango',
+                'Contraseña',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Colors.black,
@@ -151,110 +295,28 @@ class _UserCreateModalState extends State<UserCreateModal> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Color.fromRGBO(
-                        0,
-                        0,
-                        0,
-                        0.57,
-                      ), //shadow for button
-                      blurRadius: 2,
-                    ) //blur radius of shadow
-                  ],
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    right: 5,
-                    left: 10,
-                  ),
-                  child: DropdownButton(
-                    // Initial Value
-                    value: controller.dropdownvalue.toString(),
-                    isExpanded: true,
-                    underline: Container(),
-                    // Down Arrow Icon
-                    icon: const Icon(Icons.keyboard_arrow_down),
-
-                    // Array list of items
-                    items: rango.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    // After selecting the desired option,it will
-                    // change button value to selected value
-                    onChanged: (String? newValue) async {
-                      await controller.changeRango(newValue!);
-                      print(newValue);
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Zona',
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Color.fromRGBO(
-                        0,
-                        0,
-                        0,
-                        0.57,
-                      ), //shadow for button
-                      blurRadius: 2,
-                    ) //blur radius of shadow
-                  ],
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    right: 5,
-                    left: 10,
-                  ),
-                  child: DropdownButton(
-                    // Initial Value
-                    value: controller.dropdownvalueZona.toString(),
-                    isExpanded: true, //make true to take width of parent widget
-                    underline: Container(),
-                    // Down Arrow Icon
-                    icon: const Icon(Icons.keyboard_arrow_down),
-
-                    // Array list of items
-                    items: zona.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                    // After selecting the desired option,it will
-                    // change button value to selected value
-                    onChanged: (String? newValue) {
-                      controller.changeZona(newValue!);
-                    },
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: TextField(
+                  controller: controller.txtPassword,
+                  obscureText: !controller.noShowPasswordLogin,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {
+                        controller.showPassword();
+                      },
+                      icon: (controller.noShowPasswordLogin)
+                          ? Icon(Icons.visibility_off, color: dumncVerde)
+                          : Icon(
+                              Icons.visibility,
+                              color: Colors.grey,
+                            ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                   ),
                 ),
               ),
@@ -315,7 +377,25 @@ class _UserCreateModalState extends State<UserCreateModal> {
               ),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (controller.txtNombre.text.isNotEmpty &&
+                        controller.txtDatePicker.text.isNotEmpty &&
+                        controller.txtPassword.text.isNotEmpty) {
+                      Get.snackbar(
+                        'Confirm',
+                        'Usuario creado correctamente',
+                        colorText: Colors.white,
+                        backgroundColor: dumncVerde,
+                      );
+                    } else {
+                      Get.snackbar(
+                        'Confirm',
+                        'Usuario creado correctamente',
+                        colorText: Colors.white,
+                        backgroundColor: Colors.red,
+                      );
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(150, 50),
                     primary: dumncVerde,

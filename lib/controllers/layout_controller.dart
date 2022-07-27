@@ -1,7 +1,9 @@
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:dumc_backoffice/routes/app_routes.dart';
+import 'package:dumc_backoffice/screens/clubs_screen.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
 import 'package:dumc_backoffice/screens/user_screen.dart';
+import 'package:dumc_backoffice/screens/zonas_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -9,9 +11,9 @@ class LayoutController extends GetxController {
   late Widget pageToShow;
   Map<String, bool> selectedItem = {
     'selectDashboard': false,
-    'selectUser': true,
+    'selectUser': false,
     'selectZone': false,
-    'selectClub': false,
+    'selectClub': true,
     'selectQuiz': false,
     'selectSettings': false,
   };
@@ -19,7 +21,7 @@ class LayoutController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    changeView(UserScreen());
+    changeView(ClubsScreen());
   }
 
   changeSelected(term) {
