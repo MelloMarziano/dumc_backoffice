@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:dumc_backoffice/controllers/layout_controller.dart';
 import 'package:dumc_backoffice/screens/clubs_screen.dart';
+import 'package:dumc_backoffice/screens/evaluation_screen.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
 import 'package:dumc_backoffice/screens/quiz_screen.dart';
 import 'package:dumc_backoffice/screens/user_screen.dart';
@@ -69,7 +70,17 @@ class LayoutScreen extends StatelessWidget {
                 isSelected: _.selectedItem['selectClub']!,
               ),
               CollapsibleItem(
-                text: 'Evaluacion',
+                text: 'Evaluaciones',
+                icon: Icons.assignment,
+                onPressed: () {
+                  _.changeSelected('selectEvaluation');
+                  animateController.reset();
+                  _.changeView(EvaluationScreen());
+                },
+                isSelected: _.selectedItem['selectEvaluation']!,
+              ),
+              CollapsibleItem(
+                text: 'Preguntas',
                 icon: Icons.quiz,
                 onPressed: () {
                   _.changeSelected('selectQuiz');
@@ -91,7 +102,7 @@ class LayoutScreen extends StatelessWidget {
             body: Container(
               height: double.infinity,
               width: double.infinity,
-              color: Colors.blueGrey[50],
+              color: const Color(0xFFc7daf0),
               padding: const EdgeInsets.only(
                 right: 10,
                 top: 10,
@@ -102,11 +113,11 @@ class LayoutScreen extends StatelessWidget {
                 height: double.infinity,
                 width: (MediaQuery.of(context).size.width * 1) - 0.10,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xFFf5f8fc),
                   borderRadius: BorderRadius.circular(5),
                   boxShadow: const [
                     BoxShadow(
-                      color: Colors.grey,
+                      color: Color(0xFFc7daf0),
                       blurRadius: 5,
                       spreadRadius: 0.01,
                       offset: Offset(3, 3),
@@ -139,13 +150,13 @@ class LayoutScreen extends StatelessWidget {
                 const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             sidebarBoxShadow: const [
               BoxShadow(
-                color: Colors.transparent,
+                color: Color(0xFFc7daf0),
                 blurRadius: 20,
                 spreadRadius: 0.01,
                 offset: Offset(3, 3),
               ),
               BoxShadow(
-                color: Colors.transparent,
+                color: Color(0xFFc7daf0),
                 blurRadius: 50,
                 spreadRadius: 0.01,
                 offset: Offset(3, 3),

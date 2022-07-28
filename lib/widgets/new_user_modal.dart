@@ -61,7 +61,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     'Crear usuario nuevo',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF0d2d52),
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -74,7 +74,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     },
                     icon: const Icon(
                       Icons.cancel,
-                      color: Colors.redAccent,
+                      color: Color(0xFFB00020),
                     ),
                   ),
                 ],
@@ -87,7 +87,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 'Nombre',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -111,7 +111,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 'Fecha de nacimiento',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -157,7 +157,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                             'Zona',
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
-                                color: Colors.black,
+                                color: Color(0xFF0d2d52),
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -225,7 +225,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                             'Rango',
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
-                                color: Colors.black,
+                                color: Color(0xFF0d2d52),
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
@@ -290,7 +290,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 'Contraseña',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -333,7 +333,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         'Administrador',
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
-                            color: Colors.black,
+                            color: Color(0xFF0d2d52),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -357,7 +357,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         'Activo',
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
-                            color: Colors.black,
+                            color: Color(0xFF0d2d52),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -392,7 +392,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         'Confirm',
                         'Usuario creado correctamente',
                         colorText: Colors.white,
-                        backgroundColor: Colors.red,
+                        backgroundColor: Color(0xFFB00020),
                       );
                     }
                   },

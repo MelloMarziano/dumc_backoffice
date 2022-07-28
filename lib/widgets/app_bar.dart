@@ -18,8 +18,8 @@ class AppBarWidget extends StatelessWidget {
       child: Text(
         title,
         style: GoogleFonts.poppins(
-          textStyle: TextStyle(
-            color: Colors.black,
+          textStyle: const TextStyle(
+            color: Color(0xFF0d2d52),
             fontWeight: FontWeight.bold,
             fontSize: 28,
           ),

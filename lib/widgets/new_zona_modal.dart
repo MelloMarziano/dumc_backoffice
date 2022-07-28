@@ -41,7 +41,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                     'Crear zona nueva',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF0d2d52),
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -54,7 +54,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                     },
                     icon: const Icon(
                       Icons.cancel,
-                      color: Colors.redAccent,
+                      color: Color(0xFFB00020),
                     ),
                   ),
                 ],
@@ -67,7 +67,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                 'Division',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -91,7 +91,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                 'Nombre',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -115,7 +115,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                 'Nombre cordinador',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -152,7 +152,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
                         'Confirm',
                         'Zona creado correctamente',
                         colorText: Colors.white,
-                        backgroundColor: Colors.red,
+                        backgroundColor: Color(0xFFB00020),
                       );
                     }
                   },

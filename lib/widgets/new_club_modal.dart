@@ -54,7 +54,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                     'Crear nuevo club',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                        color: Colors.black,
+                        color: Color(0xFF0d2d52),
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -67,7 +67,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                     },
                     icon: const Icon(
                       Icons.cancel,
-                      color: Colors.redAccent,
+                      color: Color(0xFFB00020),
                     ),
                   ),
                 ],
@@ -80,7 +80,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 'Zona',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -139,7 +139,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 'Nombre del club',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -163,7 +163,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 'Director',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -187,7 +187,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 'Cantidad de miembros',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: Colors.black,
+                    color: Color(0xFF0d2d52),
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -224,7 +224,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                         'Confirm',
                         'Zona creado correctamente',
                         colorText: Colors.white,
-                        backgroundColor: Colors.red,
+                        backgroundColor: Color(0xFFB00020),
                       );
                     }
                   },

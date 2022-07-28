@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DataTableWidget extends StatelessWidget {
+class EvaluationDataTableWidget extends StatelessWidget {
   final List<String> titleTable;
 
-  const DataTableWidget({super.key, required this.titleTable});
+  const EvaluationDataTableWidget({super.key, required this.titleTable});
 
   @override
   Widget build(BuildContext context) {
@@ -43,25 +43,8 @@ class DataTableWidget extends StatelessWidget {
         10,
         (index) => DataRow(
           cells: [
-            DataCell(Text('Zona 6')),
-            DataCell(Text('Eliu Ortega')),
-            DataCell(Text('Guia Mayor')),
-            DataCell(
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(70, 20),
-                  primary: Color(0xFFB00020),
-                ),
-                child: Text('Editar'),
-              ),
-            ),
-            const DataCell(
-              CupertinoSwitch(
-                value: true,
-                onChanged: null,
-              ),
-            ),
+            DataCell(Text('Marcha 1')),
+            DataCell(Text('15')),
             DataCell(Row(
               children: [
                 ElevatedButton(

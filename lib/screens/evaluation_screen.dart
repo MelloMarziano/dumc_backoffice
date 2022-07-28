@@ -3,6 +3,7 @@ import 'package:dumc_backoffice/controllers/user_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
 import 'package:dumc_backoffice/widgets/datatable.dart';
+import 'package:dumc_backoffice/widgets/evaluation_datatable.dart';
 import 'package:dumc_backoffice/widgets/new_user_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class QuizScreen extends StatelessWidget {
-  const QuizScreen({Key? key}) : super(key: key);
+class EvaluationScreen extends StatelessWidget {
+  const EvaluationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class QuizScreen extends StatelessWidget {
         child: Column(
           children: [
             const AppBarWidget(
-              title: 'Preguntas',
+              title: 'Evaluaciones',
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -60,7 +61,6 @@ class QuizScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   width: 20,
                 ),
@@ -72,25 +72,24 @@ class QuizScreen extends StatelessWidget {
                     fixedSize: const Size(150, 50),
                     primary: dumncVerde,
                   ),
-                  child: Text('Nueva pregunta'),
+                  child: Text('Nueva evaluacion'),
                 ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            // Container(
-            //   height: 600,
-            //   //decoration: BoxDecoration(border: Border.all()),
-            //   child: const DataTableWidget(
-            //     titleTable: [
-            //       'Evaluacion',
-            //       'Pregunta',
-            //       'Puntuacion',
-            //       'Action',
-            //     ],
-            //   ),
-            // )
+            Container(
+              height: 600,
+              //decoration: BoxDecoration(border: Border.all()),
+              child: const EvaluationDataTableWidget(
+                titleTable: [
+                  'Evaluacion',
+                  'Puntuacion',
+                  'Action',
+                ],
+              ),
+            )
           ],
         ),
       ),
