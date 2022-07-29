@@ -85,7 +85,7 @@ class EvaluationScreen extends StatelessWidget {
               child: const EvaluationDataTableWidget(
                 titleTable: [
                   'Evaluacion',
-                  'Puntuacion',
+                  'Puntuacion maxima',
                   'Action',
                 ],
               ),

@@ -1,10 +1,8 @@
 import 'package:dumc_backoffice/controllers/clubs_controller.dart';
-import 'package:dumc_backoffice/controllers/zona_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
 import 'package:dumc_backoffice/widgets/clubes_datatable.dart';
 import 'package:dumc_backoffice/widgets/new_club_modal.dart';
-import 'package:dumc_backoffice/widgets/new_zona_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +12,7 @@ class ClubsScreen extends StatelessWidget {
     return GetBuilder<ClubsController>(
       init: ClubsController(),
       builder: (_) => Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: 20,
           right: 20,
         ),
