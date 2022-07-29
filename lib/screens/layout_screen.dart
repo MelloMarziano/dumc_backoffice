@@ -90,10 +90,10 @@ class LayoutScreen extends StatelessWidget {
                 isSelected: _.selectedItem['selectQuiz']!,
               ),
               CollapsibleItem(
-                text: 'Settings',
-                icon: Icons.settings,
+                text: 'Disciplina',
+                icon: Icons.rule,
                 onPressed: () {},
-                isSelected: _.selectedItem['selectSettings']!,
+                isSelected: _.selectedItem['selectDisciplina']!,
               ),
             ],
             avatarImg: AssetImage('/logo/dumc.png'),

@@ -1,11 +1,5 @@
-import 'package:collapsible_sidebar/collapsible_sidebar.dart';
-import 'package:dumc_backoffice/routes/app_routes.dart';
-import 'package:dumc_backoffice/screens/clubs_screen.dart';
+import 'package:dumc_backoffice/screens/disciplina_screen.dart';
 import 'package:dumc_backoffice/screens/evaluation_screen.dart';
-import 'package:dumc_backoffice/screens/home_screen.dart';
-import 'package:dumc_backoffice/screens/quiz_screen.dart';
-import 'package:dumc_backoffice/screens/user_screen.dart';
-import 'package:dumc_backoffice/screens/zonas_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -16,15 +10,15 @@ class LayoutController extends GetxController {
     'selectUser': false,
     'selectZone': false,
     'selectClub': false,
-    'selectEvaluation': true,
+    'selectEvaluation': false,
     'selectQuiz': false,
-    'selectSettings': false,
+    'selectDisciplina': true,
   };
 
   @override
   void onInit() async {
     super.onInit();
-    changeView(EvaluationScreen());
+    changeView(DisciplinaScreen());
   }
 
   changeSelected(term) {
