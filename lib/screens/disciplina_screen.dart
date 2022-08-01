@@ -1,6 +1,7 @@
 import 'package:dumc_backoffice/controllers/zona_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
+import 'package:dumc_backoffice/widgets/disciplina_datatable.dart';
 import 'package:dumc_backoffice/widgets/new_disciplina_modal.dart';
 import 'package:dumc_backoffice/widgets/zonas_datatable.dart';
 import 'package:flutter/material.dart';
@@ -74,12 +75,13 @@ class DisciplinaScreen extends StatelessWidget {
             ),
             Container(
               height: 600,
-              //decoration: BoxDecoration(border: Border.all()),
-              child: const ZonaDataTableWidget(
+              width: double.infinity,
+              child: DisciplinaDataTableWidget(
                 titleTable: [
-                  'Division',
-                  'Nombre',
-                  'Cordinador',
+                  'Tipo de cinta',
+                  'Codigo de falta',
+                  'Descripcion',
+                  'Cantidad de cintas'
                 ],
               ),
             )

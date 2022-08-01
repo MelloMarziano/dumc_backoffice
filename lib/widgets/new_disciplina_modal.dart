@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dumc_backoffice/controllers/clubs_controller.dart';
 import 'package:dumc_backoffice/controllers/disciplina_controller.dart';
 import 'package:dumc_backoffice/controllers/user_controller.dart';
 import 'package:dumc_backoffice/controllers/zona_controller.dart';
+import 'package:dumc_backoffice/models/disciplina.model.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +17,10 @@ class DisciplinaCreateModal extends StatefulWidget {
 }
 
 class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
-  var zona = [
-    'Zona 1',
-    'Zona 2',
-    'Zona 3',
-    'Zona 4',
-    'Zona 5',
-    'Zona 6',
-    'Zona 7',
-    'Zona 8',
-    'Zona 9',
+  var tipoDisciplina = [
+    'Cintas Amarillas (AM)',
+    'Cintas Azules (AZ)',
+    'Cintas Rojas (R)',
   ];
   @override
   Widget build(BuildContext context) {
@@ -77,6 +73,62 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
               const SizedBox(
                 height: 30,
               ),
+              Text(
+                'Tipo de cinta',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Color(0xFF0d2d52),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Color.fromRGBO(
+                        0,
+                        0,
+                        0,
+                        0.57,
+                      ), //shadow for button
+                      blurRadius: 2,
+                    ) //blur radius of shadow
+                  ],
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: 5,
+                    left: 10,
+                  ),
+                  child: DropdownButton(
+                    // Initial Value
+                    value: controller.dropdownvalueTipo.toString(),
+                    isExpanded: true, //make true to take width of parent widget
+                    underline: Container(),
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: tipoDisciplina.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      controller.changeTipo(newValue!);
+                    },
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -94,6 +146,7 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                 height: 50,
                 child: TextField(
                   controller: controller.txtCodigo,
+                  readOnly: controller.isLoading,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -115,9 +168,11 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
               ),
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 100,
                 child: TextField(
+                  maxLines: 3,
                   controller: controller.txtDescripcion,
+                  readOnly: controller.isLoading,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -129,7 +184,7 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                 height: 20,
               ),
               Text(
-                'Cantidad de banderas',
+                'Cantidad de cintas',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Color(0xFF0d2d52),
@@ -142,6 +197,7 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                 height: 50,
                 child: TextField(
                   controller: controller.txtBanderas,
+                  readOnly: controller.isLoading,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -156,10 +212,24 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (controller.txtCodigo.text.isNotEmpty &&
-                        controller.txtDescripcion.text.isNotEmpty) {
+                        controller.txtDescripcion.text.isNotEmpty &&
+                        controller.txtBanderas.text.isNotEmpty) {
+                      final datos = {
+                        'cantidadCintasDisciplina': controller.txtBanderas.text,
+                        'codigoDisciplina': controller.txtCodigo.text,
+                        'descripcionDisciplina': controller.txtDescripcion.text,
+                        'tipoDisciplina': controller.dropdownvalueTipo,
+                        'idDisciplina': 1,
+                      };
+
+                      print(datos);
+                      await controller.saveDisciplina(datos);
+                      controller.txtBanderas.clear();
+                      controller.txtDescripcion.clear();
+                      controller.txtBanderas.clear();
                       Get.snackbar(
                         'Confirm',
-                        'Zona creada correctamente',
+                        'Disciplina creada correctamente',
                         colorText: Colors.white,
                         backgroundColor: dumncVerde,
                       );
@@ -176,7 +246,11 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                     fixedSize: const Size(150, 50),
                     primary: dumncVerde,
                   ),
-                  child: Text('Guardar'),
+                  child: controller.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text('Guardar'),
                 ),
               ),
             ],

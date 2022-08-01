@@ -184,7 +184,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 height: 20,
               ),
               Text(
-                'Cantidad de miembros',
+                'Iglesia que pertenece',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Color(0xFF0d2d52),
@@ -213,9 +213,19 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                     if (controller.txtNombre.text.isNotEmpty &&
                         controller.txtDirector.text.isNotEmpty &&
                         controller.txtMiembros.text.isNotEmpty) {
+                      final datos = {
+                        'zonaClub': controller.dropdownvalueZona,
+                        'nombreClub': controller.txtNombre.text,
+                        'directorClub': controller.txtDirector.text,
+                        'iglesiaClub': controller.txtMiembros.text,
+                        'idClub': 1,
+                      };
+
+                      print(datos);
+                      await controller.saveClub(datos);
                       Get.snackbar(
                         'Confirm',
-                        'Zona creada correctamente',
+                        'Club creado correctamente',
                         colorText: Colors.white,
                         backgroundColor: dumncVerde,
                       );

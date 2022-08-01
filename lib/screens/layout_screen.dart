@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:dumc_backoffice/controllers/layout_controller.dart';
 import 'package:dumc_backoffice/screens/clubs_screen.dart';
+import 'package:dumc_backoffice/screens/disciplina_screen.dart';
 import 'package:dumc_backoffice/screens/evaluation_screen.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
 import 'package:dumc_backoffice/screens/quiz_screen.dart';
@@ -92,7 +93,11 @@ class LayoutScreen extends StatelessWidget {
               CollapsibleItem(
                 text: 'Disciplina',
                 icon: Icons.rule,
-                onPressed: () {},
+                onPressed: () {
+                  _.changeSelected('selectDisciplina');
+                  animateController.reset();
+                  _.changeView(DisciplinaScreen());
+                },
                 isSelected: _.selectedItem['selectDisciplina']!,
               ),
             ],

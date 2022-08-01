@@ -74,13 +74,14 @@ class ClubsScreen extends StatelessWidget {
             ),
             Container(
               height: 600,
-              //decoration: BoxDecoration(border: Border.all()),
+              width: double.infinity,
               child: const ClubsDataTableWidget(
                 titleTable: [
                   'Zona',
-                  'Nombre',
-                  'Director',
-                  'Miembros Total',
+                  'Nombre club',
+                  'Director club',
+                  'Iglesia club',
+                  'Acciones'
                 ],
               ),
             )

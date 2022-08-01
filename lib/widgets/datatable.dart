@@ -62,29 +62,31 @@ class DataTableWidget extends StatelessWidget {
                 onChanged: null,
               ),
             ),
-            DataCell(Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    //fixedSize: const Size(150, 40),
-                    primary: dumncDoradoClaro,
+            DataCell(
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      //fixedSize: const Size(150, 40),
+                      primary: dumncDoradoClaro,
+                    ),
+                    child: Icon(Icons.edit),
                   ),
-                  child: Icon(Icons.edit),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    //fixedSize: const Size(150, 40),
-                    primary: Color(0xFFB00020),
+                  SizedBox(
+                    width: 10,
                   ),
-                  child: Icon(Icons.delete),
-                ),
-              ],
-            ))
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      //fixedSize: const Size(150, 40),
+                      primary: Color(0xFFB00020),
+                    ),
+                    child: Icon(Icons.delete),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
