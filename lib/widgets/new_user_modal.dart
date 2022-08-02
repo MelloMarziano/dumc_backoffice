@@ -107,37 +107,99 @@ class _UserCreateModalState extends State<UserCreateModal> {
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                'Fecha de nacimiento',
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    color: Color(0xFF0d2d52),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              SizedBox(
+              Container(
                 width: double.infinity,
-                height: 50,
-                child: TextField(
-                  controller: controller.txtDatePicker,
-                  onTap: () async {
-                    final DateTime? picked = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1970, 8),
-                      lastDate: DateTime(2101),
-                    );
-                    if (picked != null) {
-                      controller.writeInputDatePicker(picked);
-                    }
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
+                height: 80,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Fecha de nacimiento',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Color(0xFF0d2d52),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: TextField(
+                              controller: controller.txtDatePicker,
+                              onTap: () async {
+                                final DateTime? picked = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1970, 8),
+                                  lastDate: DateTime(2101),
+                                );
+                                if (picked != null) {
+                                  controller.writeInputDatePicker(picked);
+                                }
+                              },
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                suffixIcon: const Icon(Icons.calendar_month),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    suffixIcon: const Icon(Icons.calendar_month),
-                  ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Contraseña',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Color(0xFF0d2d52),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: TextField(
+                              controller: controller.txtPassword,
+                              obscureText: !controller.noShowPasswordLogin,
+                              decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                  padding: EdgeInsets.all(0),
+                                  onPressed: () {
+                                    controller.showPassword();
+                                  },
+                                  icon: (controller.noShowPasswordLogin)
+                                      ? Icon(Icons.visibility_off,
+                                          color: dumncVerde)
+                                      : Icon(
+                                          Icons.visibility,
+                                          color: Colors.grey,
+                                        ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
@@ -285,40 +347,6 @@ class _UserCreateModalState extends State<UserCreateModal> {
               ),
               const SizedBox(
                 height: 10,
-              ),
-              Text(
-                'Contraseña',
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    color: Color(0xFF0d2d52),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: TextField(
-                  controller: controller.txtPassword,
-                  obscureText: !controller.noShowPasswordLogin,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      padding: EdgeInsets.all(0),
-                      onPressed: () {
-                        controller.showPassword();
-                      },
-                      icon: (controller.noShowPasswordLogin)
-                          ? Icon(Icons.visibility_off, color: dumncVerde)
-                          : Icon(
-                              Icons.visibility,
-                              color: Colors.grey,
-                            ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                ),
               ),
               const SizedBox(
                 height: 30,
