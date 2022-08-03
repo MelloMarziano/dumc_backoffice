@@ -9,6 +9,7 @@ class DisciplinaController extends GetxController {
   var txtCodigo = TextEditingController();
   var txtDescripcion = TextEditingController();
   var txtBanderas = TextEditingController();
+
   var dropdownvalueTipo = 'Cintas Amarillas (AM)';
   var isLoading = false;
 

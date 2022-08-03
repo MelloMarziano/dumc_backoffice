@@ -13,6 +13,7 @@ class UserCreateModal extends StatefulWidget {
 
 class _UserCreateModalState extends State<UserCreateModal> {
   var rango = [
+    'Selecciona un rango',
     'Amigo',
     'Compañero',
     'Explorador',
@@ -23,6 +24,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
   ];
 
   var zona = [
+    'Selecciona una zona',
     'Zona 1',
     'Zona 2',
     'Zona 3',
@@ -81,7 +83,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
               ),
               const Divider(),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Text(
                 'Nombre',
@@ -105,7 +107,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
                 width: double.infinity,
@@ -118,7 +120,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Fecha de nacimiento',
+                            'Username',
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
                                 color: Color(0xFF0d2d52),
@@ -130,23 +132,11 @@ class _UserCreateModalState extends State<UserCreateModal> {
                             width: double.infinity,
                             height: 50,
                             child: TextField(
-                              controller: controller.txtDatePicker,
-                              onTap: () async {
-                                final DateTime? picked = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1970, 8),
-                                  lastDate: DateTime(2101),
-                                );
-                                if (picked != null) {
-                                  controller.writeInputDatePicker(picked);
-                                }
-                              },
+                              controller: controller.txtUsername,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                suffixIcon: const Icon(Icons.calendar_month),
                               ),
                             ),
                           ),
@@ -154,7 +144,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     Expanded(
                       child: Column(
@@ -224,9 +214,9 @@ class _UserCreateModalState extends State<UserCreateModal> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
+                          // const SizedBox(
+                          //   height: 5,
+                          // ),
                           DecoratedBox(
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -276,7 +266,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     Expanded(
                       child: Column(
@@ -284,7 +274,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Rango',
+                            'Fecha de nacimiento',
                             style: GoogleFonts.poppins(
                               textStyle: const TextStyle(
                                 color: Color(0xFF0d2d52),
@@ -292,50 +282,27 @@ class _UserCreateModalState extends State<UserCreateModal> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                  color: Color.fromRGBO(
-                                    0,
-                                    0,
-                                    0,
-                                    0.57,
-                                  ), //shadow for button
-                                  blurRadius: 2,
-                                ) //blur radius of shadow
-                              ],
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                right: 5,
-                                left: 10,
-                              ),
-                              child: DropdownButton(
-                                // Initial Value
-                                value: controller.dropdownvalue.toString(),
-                                isExpanded: true,
-                                underline: Container(),
-                                // Down Arrow Icon
-                                icon: const Icon(Icons.keyboard_arrow_down),
-
-                                // Array list of items
-                                items: rango.map((String items) {
-                                  return DropdownMenuItem(
-                                    value: items,
-                                    child: Text(items),
-                                  );
-                                }).toList(),
-                                // After selecting the desired option,it will
-                                // change button value to selected value
-                                onChanged: (String? newValue) async {
-                                  await controller.changeRango(newValue!);
-                                },
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: TextField(
+                              controller: controller.txtDatePicker,
+                              onTap: () async {
+                                final DateTime? picked = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1970, 8),
+                                  lastDate: DateTime(2101),
+                                );
+                                if (picked != null) {
+                                  controller.writeInputDatePicker(picked);
+                                }
+                              },
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                suffixIcon: const Icon(Icons.calendar_month),
                               ),
                             ),
                           ),
@@ -349,7 +316,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 height: 10,
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
               Row(
                 children: [
@@ -375,7 +342,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     ],
                   ),
                   SizedBox(
-                    width: 30,
+                    width: 20,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -401,26 +368,43 @@ class _UserCreateModalState extends State<UserCreateModal> {
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
                     if (controller.txtNombre.text.isNotEmpty &&
                         controller.txtDatePicker.text.isNotEmpty &&
-                        controller.txtPassword.text.isNotEmpty) {
+                        controller.txtPassword.text.isNotEmpty &&
+                        controller.dropdownvalueZona != 'Selecciona una zona') {
+                      final password = controller
+                          .encryptPassword(controller.txtPassword.text);
+                      final datos = {
+                        'nombreCompleto': controller.txtNombre.text,
+                        'userName': controller.txtUsername.text,
+                        'password': password,
+                        'zonaUsuario': controller.dropdownvalueZona,
+                        'fechaNacimiento': controller.txtDatePicker.text,
+                        'isAdmin': controller.isAdmin,
+                        'isActive': controller.isActive,
+                        'idUsuario': 1,
+                      };
+                      await controller.saveUsuario(datos);
+                      Get.back();
                       Get.snackbar(
                         'Confirm',
                         'Usuario creado correctamente',
                         colorText: Colors.white,
-                        backgroundColor: dumncVerde,
+                        backgroundColor: Colors.green,
+                        maxWidth: 400,
                       );
                     } else {
                       Get.snackbar(
-                        'Confirm',
-                        'Usuario creado correctamente',
+                        'Error',
+                        'No puedes dejar campos vacios',
                         colorText: Colors.white,
                         backgroundColor: Color(0xFFB00020),
+                        maxWidth: 400,
                       );
                     }
                   },
@@ -428,7 +412,11 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     fixedSize: const Size(150, 50),
                     primary: dumncVerde,
                   ),
-                  child: Text('Guardar'),
+                  child: controller.isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text('Guardar'),
                 ),
               ),
             ],
