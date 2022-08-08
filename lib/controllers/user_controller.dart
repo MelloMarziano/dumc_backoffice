@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:encrypt/encrypt.dart' as keyEnc;
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
+
+import '../models/users.model.dart';
+import '../themes/colores.dart';
 
 class UserController extends GetxController {
   var formatDate = DateFormat('dd-MM-yyyy');
@@ -77,5 +81,71 @@ class UserController extends GetxController {
     //final decrypted = encrypter.decrypt(encrypted, iv: iv);
 
     return encrypted.base64;
+  }
+
+  Stream<List<UsuariosModel>> getDisciplinaSnapshot() {
+    return collectionReference.snapshots().map((QuerySnapshot query) {
+      List<UsuariosModel> usuarios = [];
+
+      for (var usuario in query.docs) {
+        final usuarioModel =
+            UsuariosModel.fromDocumentSnapshot(documentSnapshot: usuario);
+        usuarios.add(usuarioModel);
+        update();
+      }
+      return usuarios;
+    });
+  }
+
+  List<DataRow> buildList(
+      BuildContext context, List<DocumentSnapshot> snapshot) {
+    return snapshot.map((data) => _buildListItem(context, data)).toList();
+  }
+
+  DataRow _buildListItem(BuildContext context, DocumentSnapshot data) {
+    final record = UsuariosModel.fromDocumentSnapshot(documentSnapshot: data);
+
+    return DataRow(cells: [
+      DataCell(Text(record.zonaUsuario)),
+      DataCell(Text(record.nombreCompleto)),
+      DataCell(Text(record.userName)),
+      DataCell(
+        CupertinoSwitch(
+          value: record.isAdmin,
+          onChanged: null,
+        ),
+      ),
+      DataCell(
+        CupertinoSwitch(
+          value: record.isActive,
+          onChanged: null,
+        ),
+      ),
+      DataCell(
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                //fixedSize: const Size(150, 40),
+                primary: dumncDoradoClaro,
+              ),
+              child: Icon(Icons.edit),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                //fixedSize: const Size(150, 40),
+                primary: Color(0xFFB00020),
+              ),
+              child: Icon(Icons.delete),
+            ),
+          ],
+        ),
+      )
+    ]);
   }
 }

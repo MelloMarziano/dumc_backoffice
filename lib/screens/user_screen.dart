@@ -4,6 +4,7 @@ import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
 import 'package:dumc_backoffice/widgets/datatable.dart';
 import 'package:dumc_backoffice/widgets/new_user_modal.dart';
+import 'package:dumc_backoffice/widgets/usuarios_datatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -80,15 +81,15 @@ class UserScreen extends StatelessWidget {
             ),
             Container(
               height: 600,
-              //decoration: BoxDecoration(border: Border.all()),
-              child: const DataTableWidget(
+              width: double.infinity,
+              child: UsuariosDataTableWidget(
                 titleTable: [
                   'Zona',
-                  'Nombre',
-                  'Rango',
+                  'Nombre completo',
+                  'Username',
                   'Admin',
                   'Activo',
-                  'Action',
+                  'Acciones'
                 ],
               ),
             )
