@@ -25,6 +25,12 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
     'Zona 8',
     'Zona 9',
   ];
+
+  var tipoClub = [
+    'Aventureros',
+    'Conquistadores',
+    'Guias Mayores',
+  ];
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ClubsController>(
@@ -92,7 +98,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5),
-                  boxShadow: <BoxShadow>[
+                  boxShadow: const <BoxShadow>[
                     BoxShadow(
                       color: Color.fromRGBO(
                         0,
@@ -105,7 +111,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     right: 5,
                     left: 10,
                   ),
@@ -153,6 +159,65 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Tipo de club',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    color: Color(0xFF0d2d52),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: const <BoxShadow>[
+                    BoxShadow(
+                      color: Color.fromRGBO(
+                        0,
+                        0,
+                        0,
+                        0.57,
+                      ), //shadow for button
+                      blurRadius: 2,
+                    ) //blur radius of shadow
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 5,
+                    left: 10,
+                  ),
+                  child: DropdownButton(
+                    // Initial Value
+                    value: controller.dropdownvaluetipoClub.toString(),
+                    isExpanded: true, //make true to take width of parent widget
+                    underline: Container(),
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: tipoClub.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      controller.changeTipoClub(newValue!);
+                    },
                   ),
                 ),
               ),
@@ -218,6 +283,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                         'nombreClub': controller.txtNombre.text,
                         'directorClub': controller.txtDirector.text,
                         'iglesiaClub': controller.txtMiembros.text,
+                        'tipoClub': controller.dropdownvaluetipoClub,
                         'idClub': 1,
                       };
 
@@ -242,7 +308,7 @@ class _ClubCreateModalState extends State<ClubCreateModal> {
                     fixedSize: const Size(150, 50),
                     primary: dumncVerde,
                   ),
-                  child: Text('Guardar'),
+                  child: const Text('Guardar'),
                 ),
               ),
             ],

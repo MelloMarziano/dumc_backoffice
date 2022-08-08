@@ -6,6 +6,7 @@ class ClubsModel {
   late String nombreClub;
   late String directorClub;
   late String iglesiaClub;
+  late String tipoClub;
   late int idClub;
 
   ClubsModel({
@@ -14,6 +15,7 @@ class ClubsModel {
     required this.nombreClub,
     required this.directorClub,
     required this.iglesiaClub,
+    required this.tipoClub,
     required this.idClub,
   });
 
@@ -24,6 +26,7 @@ class ClubsModel {
     nombreClub = documentSnapshot['nombreClub'] ?? '';
     directorClub = documentSnapshot['directorClub'] ?? '';
     iglesiaClub = documentSnapshot['iglesiaClub'] ?? '';
+    tipoClub = documentSnapshot['tipoClub'] ?? '';
     idClub = documentSnapshot['idClub'] ?? 0;
   }
 }

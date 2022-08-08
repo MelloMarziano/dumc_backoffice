@@ -13,6 +13,7 @@ class ClubsController extends GetxController {
   var isLoading = false;
 
   var dropdownvalueZona = 'Zona 1';
+  var dropdownvaluetipoClub = 'Aventureros';
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late CollectionReference collectionReference;
@@ -29,6 +30,11 @@ class ClubsController extends GetxController {
 
   changeZona(String value) {
     dropdownvalueZona = value;
+    update();
+  }
+
+  changeTipoClub(String value) {
+    dropdownvaluetipoClub = value;
     update();
   }
 
@@ -82,7 +88,7 @@ class ClubsController extends GetxController {
               ),
               child: Icon(Icons.edit),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             ElevatedButton(
@@ -91,7 +97,7 @@ class ClubsController extends GetxController {
                 //fixedSize: const Size(150, 40),
                 primary: Color(0xFFB00020),
               ),
-              child: Icon(Icons.delete),
+              child: const Icon(Icons.delete),
             ),
           ],
         ),
