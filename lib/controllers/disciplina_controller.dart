@@ -21,8 +21,8 @@ class DisciplinaController extends GetxController {
 
   late CollectionReference collectionReferenceBanderas;
 
-  Rx<List<DisciplinaModel>> banderasList = Rx<List<DisciplinaModel>>([]);
-  List<DisciplinaModel> get banderas => banderasList.value;
+  Rx<List<BanderasDisciplina>> banderasList = Rx<List<BanderasDisciplina>>([]);
+  List<BanderasDisciplina> get banderas => banderasList.value;
 
   @override
   void onInit() {
@@ -30,7 +30,7 @@ class DisciplinaController extends GetxController {
     collectionReference = _firestore.collection("Disciplina");
     collectionReferenceBanderas = _firestore.collection('Banderas');
     disciplinaList.bindStream(getDisciplinaSnapshot());
-    banderasList.bindStream(getBanderasSnapshot());
+    //banderasList.bindStream(getBanderasSnapshot());
   }
 
   changeTipo(String value) {
@@ -65,13 +65,16 @@ class DisciplinaController extends GetxController {
     });
   }
 
-  Stream<List<DisciplinaModel>> getBanderasSnapshot() {
-    return collectionReference.snapshots().map((QuerySnapshot query) {
-      List<DisciplinaModel> banderas = [];
+  Stream<List<BanderasDisciplina>> getBanderasSnapshot(String club) {
+    return collectionReference
+        .where('club', isEqualTo: club)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<BanderasDisciplina> banderas = [];
 
       for (var bandera in query.docs) {
         final disciplinaModel =
-            DisciplinaModel.fromDocumentSnapshot(documentSnapshot: bandera);
+            BanderasDisciplina.fromDocumentSnapshot(documentSnapshot: bandera);
         banderas.add(disciplinaModel);
         update();
       }
