@@ -1,3 +1,4 @@
+import 'package:dumc_backoffice/screens/camporee.dart';
 import 'package:dumc_backoffice/screens/disciplina_screen.dart';
 import 'package:dumc_backoffice/screens/evaluation_screen.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
@@ -8,8 +9,8 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class LayoutController extends GetxController {
   late Widget pageToShow;
   Map<String, bool> selectedItem = {
-    'selectDashboard': true,
-    'selectCamporee': false,
+    'selectDashboard': false,
+    'selectCamporee': true,
     'selectUser': false,
     'selectZone': false,
     'selectClub': false,
@@ -21,7 +22,7 @@ class LayoutController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    changeView(HomeScreen());
+    changeView(CamporeeScreen());
   }
 
   changeSelected(term) {

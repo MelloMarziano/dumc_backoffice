@@ -56,7 +56,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                     width: 42,
                     height: 42,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
@@ -69,7 +69,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                     onPressed: () {
                       Get.back();
@@ -143,7 +143,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Expanded(
@@ -173,9 +173,9 @@ class _UserCreateModalState extends State<UserCreateModal> {
                                     controller.showPassword();
                                   },
                                   icon: (controller.noShowPasswordLogin)
-                                      ? Icon(Icons.visibility_off,
+                                      ? const Icon(Icons.visibility_off,
                                           color: dumncVerde)
-                                      : Icon(
+                                      : const Icon(
                                           Icons.visibility,
                                           color: Colors.grey,
                                         ),

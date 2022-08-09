@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:dumc_backoffice/controllers/layout_controller.dart';
+import 'package:dumc_backoffice/screens/camporee.dart';
 import 'package:dumc_backoffice/screens/clubs_screen.dart';
 import 'package:dumc_backoffice/screens/disciplina_screen.dart';
 import 'package:dumc_backoffice/screens/evaluation_screen.dart';
@@ -47,7 +48,7 @@ class LayoutScreen extends StatelessWidget {
                 onPressed: () {
                   _.changeSelected('selectCamporee');
                   animateController.reset();
-                  _.changeView(HomeScreen());
+                  _.changeView(CamporeeScreen());
                 },
                 isSelected: _.selectedItem['selectCamporee']!,
               ),

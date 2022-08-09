@@ -28,3 +28,34 @@ class DisciplinaModel {
     idDisciplina = documentSnapshot['idDisciplina'] ?? 0;
   }
 }
+
+class BanderasDisciplina {
+  late String? banderaId;
+  late String tipoClub;
+  late String codigoFalta;
+  late String detalle;
+  late String evaluador;
+  late String zona;
+  late bool evidencia;
+
+  BanderasDisciplina({
+    this.banderaId,
+    required this.tipoClub,
+    required this.codigoFalta,
+    required this.detalle,
+    required this.evaluador,
+    required this.zona,
+    required this.evidencia,
+  });
+
+  BanderasDisciplina.fromDocumentSnapshot(
+      {required DocumentSnapshot documentSnapshot}) {
+    banderaId = documentSnapshot.id;
+    tipoClub = documentSnapshot['tipoClub'] ?? '';
+    codigoFalta = documentSnapshot['codigoFalta'] ?? '';
+    detalle = documentSnapshot['detalle'] ?? '';
+    evaluador = documentSnapshot['evaluador'] ?? '';
+    zona = documentSnapshot['zona'] ?? 0;
+    evidencia = documentSnapshot['evidencia'] ?? false;
+  }
+}
