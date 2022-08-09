@@ -12,8 +12,8 @@ class HomeController extends GetxController {
   late CollectionReference collectionReference;
   late CollectionReference snapShotString;
 
-  var dropdownvalueZona = 'Zona 1';
-  var dropdownvaluetipoClub = 'Aventureros';
+  var dropdownvalueZona = 'Zona 6';
+  var dropdownvaluetipoClub = 'Conquistadores';
 
   Rx<List<ClubsModel>> clubesList = Rx<List<ClubsModel>>([]);
   List<ClubsModel> get clubs => clubesList.value;
@@ -75,7 +75,9 @@ class HomeController extends GetxController {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return DisciplinaModalCreateModal();
+                        return DisciplinaModalCreateModal(
+                          nombreClub: data.nombreClub,
+                        );
                       });
                 },
                 icon: const Icon(

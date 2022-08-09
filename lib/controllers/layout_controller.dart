@@ -9,6 +9,7 @@ class LayoutController extends GetxController {
   late Widget pageToShow;
   Map<String, bool> selectedItem = {
     'selectDashboard': true,
+    'selectCamporee': false,
     'selectUser': false,
     'selectZone': false,
     'selectClub': false,

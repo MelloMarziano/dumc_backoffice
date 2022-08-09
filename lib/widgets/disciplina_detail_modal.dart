@@ -7,6 +7,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DisciplinaModalCreateModal extends StatefulWidget {
+  final String nombreClub;
+
+  const DisciplinaModalCreateModal({super.key, required this.nombreClub});
+
   @override
   _DisciplinaModalCreateModalState createState() =>
       _DisciplinaModalCreateModalState();
@@ -21,7 +25,8 @@ class _DisciplinaModalCreateModalState
       builder: (controller) => AlertDialog(
         //title: Text('Cupertino Dialog'),
         content: Container(
-          width: MediaQuery.of(context).size.width * 0.7,
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height * 0.8,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,15 +44,32 @@ class _DisciplinaModalCreateModalState
                   const SizedBox(
                     width: 10,
                   ),
-                  Text(
-                    'Detalle de Disciplina para el club: ',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        color: Color(0xFF0d2d52),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  Row(
+                    children: [
+                      Text(
+                        'Detalle de Disciplina para el club: ',
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Color(0xFF0d2d52),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        widget.nombreClub,
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Colors.red,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const Spacer(),
                   IconButton(

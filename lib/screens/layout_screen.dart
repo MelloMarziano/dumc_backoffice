@@ -9,6 +9,7 @@ import 'package:dumc_backoffice/screens/quiz_screen.dart';
 import 'package:dumc_backoffice/screens/user_screen.dart';
 import 'package:dumc_backoffice/screens/zonas_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'dart:math' as math show pi;
@@ -39,6 +40,16 @@ class LayoutScreen extends StatelessWidget {
                   _.changeView(HomeScreen());
                 },
                 isSelected: _.selectedItem['selectDashboard']!,
+              ),
+              CollapsibleItem(
+                text: 'Camporee',
+                icon: Icons.insert_invitation,
+                onPressed: () {
+                  _.changeSelected('selectCamporee');
+                  animateController.reset();
+                  _.changeView(HomeScreen());
+                },
+                isSelected: _.selectedItem['selectCamporee']!,
               ),
               CollapsibleItem(
                 text: 'Usuarios',
