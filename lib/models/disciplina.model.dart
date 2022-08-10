@@ -36,7 +36,9 @@ class BanderasDisciplina {
   late String detalle;
   late String evaluador;
   late String zona;
+  late String club;
   late bool evidencia;
+  late Timestamp fechaDelActo;
 
   BanderasDisciplina({
     this.banderaId,
@@ -45,7 +47,9 @@ class BanderasDisciplina {
     required this.detalle,
     required this.evaluador,
     required this.zona,
+    required this.club,
     required this.evidencia,
+    required this.fechaDelActo,
   });
 
   BanderasDisciplina.fromDocumentSnapshot(
@@ -56,6 +60,9 @@ class BanderasDisciplina {
     detalle = documentSnapshot['detalle'] ?? '';
     evaluador = documentSnapshot['evaluador'] ?? '';
     zona = documentSnapshot['zona'] ?? 0;
+    club = documentSnapshot['club'] ?? '';
     evidencia = documentSnapshot['evidencia'] ?? false;
+    fechaDelActo = documentSnapshot['fechaDelActo'] ??
+        DateTime.now().millisecondsSinceEpoch;
   }
 }

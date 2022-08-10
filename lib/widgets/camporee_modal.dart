@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dumc_backoffice/controllers/camporee_controllers.dart';
 import 'package:dumc_backoffice/controllers/clubs_controller.dart';
 
@@ -269,20 +270,24 @@ class _CamporeeCreateModalState extends State<CamporeeCreateModal> {
                       final datos = {
                         'nombreCamporee': controller.txtNombreCamporee.text,
                         'tipoCamporee': controller.dropdownvalueTipoCamporee,
-                        'fechaInicial': controller.txtFechaComienzo.text,
-                        'fechaFinal': controller.txtFechaFinal.text,
+                        'fechaInicial':
+                            DateTime.parse(controller.txtFechaComienzo.text)
+                                .millisecondsSinceEpoch,
+                        'fechaFinal':
+                            DateTime.parse(controller.txtFechaFinal.text)
+                                .millisecondsSinceEpoch,
                         'idCamporee': 1,
                       };
 
                       //print(datos);
                       await controller.saveCamporee(datos);
+                      Get.back();
                       Get.snackbar(
                         'Confirm',
                         'Camporee creado correctamente',
                         colorText: Colors.white,
                         backgroundColor: dumncVerde,
                       );
-                      Get.back();
                     } else {
                       Get.snackbar(
                         'Confirm',

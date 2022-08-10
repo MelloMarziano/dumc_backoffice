@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dumc_backoffice/models/camporee.model.dart';
 import 'package:dumc_backoffice/models/disciplina.model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DisciplinaController extends GetxController {
   var txtCodigo = TextEditingController();
@@ -15,22 +17,26 @@ class DisciplinaController extends GetxController {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late CollectionReference collectionReference;
+  late CollectionReference collectionReferenceBanderas;
+  late CollectionReference collectionReferenceCamporees;
 
   Rx<List<DisciplinaModel>> disciplinaList = Rx<List<DisciplinaModel>>([]);
   List<DisciplinaModel> get teams => disciplinaList.value;
 
-  late CollectionReference collectionReferenceBanderas;
-
   Rx<List<BanderasDisciplina>> banderasList = Rx<List<BanderasDisciplina>>([]);
   List<BanderasDisciplina> get banderas => banderasList.value;
+
+  Rx<List<CamporeeModel>> camporeesList = Rx<List<CamporeeModel>>([]);
+  List<CamporeeModel> get camporees => camporeesList.value;
 
   @override
   void onInit() {
     super.onInit();
     collectionReference = _firestore.collection("Disciplina");
     collectionReferenceBanderas = _firestore.collection('Banderas');
+    collectionReferenceCamporees = _firestore.collection('Camporees');
     disciplinaList.bindStream(getDisciplinaSnapshot());
-    //banderasList.bindStream(getBanderasSnapshot());
+    camporeesList.bindStream(getCamporeeSnapshot());
   }
 
   changeTipo(String value) {
@@ -65,21 +71,73 @@ class DisciplinaController extends GetxController {
     });
   }
 
-  Stream<List<BanderasDisciplina>> getBanderasSnapshot(String club) {
-    return collectionReference
-        .where('club', isEqualTo: club)
+  Stream<List<CamporeeModel>> getCamporeeSnapshot() {
+    return collectionReferenceCamporees
+        .orderBy('idCamporee')
         .snapshots()
         .map((QuerySnapshot query) {
+      List<CamporeeModel> camporees = [];
+
+      for (var camporee in query.docs) {
+        final camporeeModel =
+            CamporeeModel.fromDocumentSnapshot(documentSnapshot: camporee);
+        camporees.add(camporeeModel);
+        banderasList.bindStream(getBanderasSnapshot(
+          'Central Mella',
+          camporeeModel.fechaInicial,
+          camporeeModel.fechaFinal,
+        ));
+        update();
+      }
+      return camporees;
+    });
+  }
+
+  Stream<List<BanderasDisciplina>> getBanderasSnapshot(
+      String club, Timestamp fechaInicial, Timestamp fechaFinal) {
+    late Stream<QuerySnapshot>? query;
+    query = collectionReferenceBanderas
+        .where('club', isEqualTo: club)
+        .where('fechaDelActo', isGreaterThanOrEqualTo: fechaInicial)
+        //.where('fechaDelActo', isGreaterThanOrEqualTo: fechaFinal)
+        .snapshots();
+    update();
+
+    return query.map((QuerySnapshot query) {
       List<BanderasDisciplina> banderas = [];
 
       for (var bandera in query.docs) {
-        final disciplinaModel =
+        final banderaModel =
             BanderasDisciplina.fromDocumentSnapshot(documentSnapshot: bandera);
-        banderas.add(disciplinaModel);
-        update();
+        banderas.add(banderaModel);
       }
+      update();
       return banderas;
     });
+  }
+
+  List<DataRow> buildListBanderas(
+    BuildContext context,
+  ) {
+    return banderas
+        .map((data) => _buildListItemBanderas(context, data))
+        .toList();
+  }
+
+  DataRow _buildListItemBanderas(BuildContext context, data) {
+    //final record = ClubsModel.fromDocumentSnapshot(documentSnapshot: data);
+    print((data.fechaDelActo as Timestamp).toDate());
+
+    return DataRow(cells: [
+      DataCell(Text(data.evaluador, style: GoogleFonts.poppins())),
+      DataCell(Text(data.codigoFalta, style: GoogleFonts.poppins())),
+      DataCell(Text(data.detalle, style: GoogleFonts.poppins())),
+      DataCell(
+          Text(data.evidencia ? 'Si' : 'No', style: GoogleFonts.poppins())),
+      DataCell(Text(
+          (data.fechaDelActo as Timestamp).toDate().toString().split(' ')[0],
+          style: GoogleFonts.poppins())),
+    ]);
   }
 
   List<DataRow> buildList(

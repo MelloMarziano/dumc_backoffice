@@ -1,6 +1,7 @@
 import 'package:dumc_backoffice/controllers/disciplina_controller.dart';
 
 import 'package:dumc_backoffice/themes/colores.dart';
+import 'package:dumc_backoffice/widgets/disciplina_detail_datatable.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,6 +88,19 @@ class _DisciplinaModalCreateModalState
               const SizedBox(
                 height: 5,
               ),
+              Container(
+                height: 600,
+                width: double.infinity,
+                child: const DisciplinaDEtailTableDataTableWidget(
+                  titleTable: [
+                    'Evaluador',
+                    'Codigo de falta',
+                    'Detalle',
+                    'Evidencia',
+                    'Fecha',
+                  ],
+                ),
+              )
             ],
           ),
         ),
