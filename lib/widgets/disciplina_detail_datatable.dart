@@ -16,37 +16,38 @@ class DisciplinaDEtailTableDataTableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DisciplinaController>(
-      init: DisciplinaController(),
-      builder: (controller) => DataTable(
-        columnSpacing: 12,
-        horizontalMargin: 12,
-        showBottomBorder: true,
-        border: TableBorder(
-          //top: const BorderSide(color: Colors.black),
-          bottom: BorderSide(color: Colors.grey[300]!),
-          left: BorderSide(color: Colors.grey[300]!),
-          right: BorderSide(color: Colors.grey[300]!),
-          //verticalInside: BorderSide(color: Colors.grey[300]!),
-          horizontalInside: const BorderSide(color: Colors.grey, width: 1),
-          borderRadius: BorderRadius.circular(5),
-        ),
-        headingRowColor: MaterialStateColor.resolveWith(
-          (states) => dumncVerde.withOpacity(0.9),
-        ),
-        columns: titleTable.map((e) {
-          return DataColumn(
-            label: Text(
-              e,
-              style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              )),
+        init: DisciplinaController(),
+        builder: (controller) {
+          return DataTable(
+            columnSpacing: 12,
+            horizontalMargin: 12,
+            showBottomBorder: true,
+            border: TableBorder(
+              //top: const BorderSide(color: Colors.black),
+              bottom: BorderSide(color: Colors.grey[300]!),
+              left: BorderSide(color: Colors.grey[300]!),
+              right: BorderSide(color: Colors.grey[300]!),
+              //verticalInside: BorderSide(color: Colors.grey[300]!),
+              horizontalInside: const BorderSide(color: Colors.grey, width: 1),
+              borderRadius: BorderRadius.circular(5),
             ),
+            headingRowColor: MaterialStateColor.resolveWith(
+              (states) => dumncVerde.withOpacity(0.9),
+            ),
+            columns: titleTable.map((e) {
+              return DataColumn(
+                label: Text(
+                  e,
+                  style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  )),
+                ),
+              );
+            }).toList(),
+            rows: controller.buildListBanderas(context),
           );
-        }).toList(),
-        rows: controller.buildListBanderas(context),
-      ),
-    );
+        });
   }
 }

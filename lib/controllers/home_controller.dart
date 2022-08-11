@@ -77,6 +77,7 @@ class HomeController extends GetxController {
                       builder: (context) {
                         return DisciplinaModalCreateModal(
                           nombreClub: data.nombreClub,
+                          tipoClub: data.tipoClub,
                         );
                       });
                 },

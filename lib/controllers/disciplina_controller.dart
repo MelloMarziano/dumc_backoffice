@@ -1,11 +1,18 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dumc_backoffice/models/camporee.model.dart';
 import 'package:dumc_backoffice/models/disciplina.model.dart';
+import 'package:dumc_backoffice/reports/disciplina.report.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
+import 'dart:html' as html;
 
 class DisciplinaController extends GetxController {
   var txtCodigo = TextEditingController();
@@ -14,6 +21,13 @@ class DisciplinaController extends GetxController {
 
   var dropdownvalueTipo = 'Cintas Amarillas (AM)';
   var isLoading = false;
+
+  var tipoClubWidget = '';
+  var nombreClubWidget = '';
+
+  var dropdownvalueCamporee = '';
+
+  var dropDownZona = [''];
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late CollectionReference collectionReference;
@@ -37,6 +51,12 @@ class DisciplinaController extends GetxController {
     collectionReferenceCamporees = _firestore.collection('Camporees');
     disciplinaList.bindStream(getDisciplinaSnapshot());
     camporeesList.bindStream(getCamporeeSnapshot());
+  }
+
+  fillData(String nombreClub, String tipoClub) {
+    tipoClubWidget = tipoClub;
+    nombreClubWidget = nombreClub;
+    update();
   }
 
   changeTipo(String value) {
@@ -72,6 +92,7 @@ class DisciplinaController extends GetxController {
   }
 
   Stream<List<CamporeeModel>> getCamporeeSnapshot() {
+    dropDownZona.clear();
     return collectionReferenceCamporees
         .orderBy('idCamporee')
         .snapshots()
@@ -82,11 +103,12 @@ class DisciplinaController extends GetxController {
         final camporeeModel =
             CamporeeModel.fromDocumentSnapshot(documentSnapshot: camporee);
         camporees.add(camporeeModel);
+        dropDownZona.add(camporeeModel.nombreCamporee);
         if (camporeeModel.isActivo) {
-          print(
-              'Estoooooooooo es camporeeeeeeeeeeeeeee ${camporeeModel.nombreCamporee}');
+          dropdownvalueCamporee = camporeeModel.nombreCamporee;
           banderasList.bindStream(getBanderasSnapshot(
-            'Central Mella',
+            nombreClubWidget,
+            tipoClubWidget,
             camporeeModel.nombreCamporee,
           ));
         }
@@ -98,10 +120,14 @@ class DisciplinaController extends GetxController {
   }
 
   Stream<List<BanderasDisciplina>> getBanderasSnapshot(
-      String club, String nombreCamporee) {
+    String club,
+    String tipoClub,
+    String nombreCamporee,
+  ) {
     late Stream<QuerySnapshot>? query;
     query = collectionReferenceBanderas
         .where('club', isEqualTo: club)
+        .where('tipoClub', isEqualTo: tipoClub)
         .where('camporee', isEqualTo: nombreCamporee)
         .snapshots();
     update();
@@ -129,16 +155,32 @@ class DisciplinaController extends GetxController {
 
   DataRow _buildListItemBanderas(BuildContext context, data) {
     //final record = ClubsModel.fromDocumentSnapshot(documentSnapshot: data);
-    print((data.fechaDelActo as Timestamp).toDate());
-
+    final String codigo = data.codigoFalta;
     return DataRow(cells: [
       DataCell(Text(data.evaluador, style: GoogleFonts.poppins())),
-      DataCell(Text(data.codigoFalta, style: GoogleFonts.poppins())),
+      DataCell(Row(
+        children: [
+          Text(
+            data.codigoFalta,
+            style: GoogleFonts.poppins(),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Icon(
+            Icons.flag,
+            color: (codigo.contains('R'))
+                ? Colors.red
+                : (codigo.contains('AM'))
+                    ? Colors.yellow
+                    : Colors.blue,
+          ),
+        ],
+      )),
       DataCell(Text(data.detalle, style: GoogleFonts.poppins())),
       DataCell(
           Text(data.evidencia ? 'Si' : 'No', style: GoogleFonts.poppins())),
-      DataCell(Text(
-          (data.fechaDelActo as Timestamp).toDate().toString().split(' ')[0],
+      DataCell(Text((data.fechaDelActo as Timestamp).toDate().toString(),
           style: GoogleFonts.poppins())),
     ]);
   }
@@ -164,5 +206,41 @@ class DisciplinaController extends GetxController {
       )),
       DataCell(Text(record.cantidadCintasDisciplina)),
     ]);
+  }
+
+  Future<void> generatePdf() async {
+    final pdf = pw.Document(version: PdfVersion.pdf_1_5, compress: true);
+    final font = await PdfGoogleFonts.nunitoExtraLight();
+
+    pdf.addPage(
+      pw.Page(
+        build: (context) {
+          return pw.Column(
+            children: [
+              pw.SizedBox(
+                width: double.infinity,
+                child: pw.FittedBox(
+                  child: pw.Text('Hola mundo', style: pw.TextStyle(font: font)),
+                ),
+              ),
+              pw.SizedBox(height: 20),
+              pw.Flexible(child: pw.FlutterLogo())
+            ],
+          );
+        },
+      ),
+    );
+
+    //return pdf.save();
+    Uint8List pdfInBytes = await pdf.save();
+    final blob = html.Blob([pdfInBytes], 'application/pdf');
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    final anchor = html.document.createElement('a') as html.AnchorElement
+      ..href = url
+      ..style.display = 'none'
+      ..download = 'reporte disciplina $nombreClubWidget-$tipoClubWidget.pdf';
+    html.document.body!.children.add(anchor);
+
+    anchor.click();
   }
 }

@@ -45,6 +45,8 @@ dependencies:
   cloud_firestore: ^3.4.2
   encrypt: ^5.0.1
   font_awesome_flutter: ^10.1.0
+  pdf: ^3.8.2
+  printing: ^5.9.2
 
 dev_dependencies:
   flutter_test:
