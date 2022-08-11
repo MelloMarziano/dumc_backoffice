@@ -101,41 +101,16 @@ class _DisciplinaModalCreateModalState
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
+                            //width: 500,
+
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 15,
-                                  ),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xFFE2E2E2),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Banderas Amarillas',
-                                        style: GoogleFonts.poppins(
-                                          textStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        '14',
-                                        style: GoogleFonts.poppins(
-                                          textStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                _cantidadTotal('Banderas Amarillas', '14'),
+                                _cantidadTotal('Banderas Azules', '14'),
+                                _cantidadTotal('Banderas Rojas', '14'),
+                                _cantidadTotal('Total puntos', '14'),
                               ],
                             ),
                           ),
@@ -258,5 +233,44 @@ class _DisciplinaModalCreateModalState
             ),
           );
         });
+  }
+
+  Container _cantidadTotal(String titulo, String cantidad) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 15,
+      ),
+      margin: EdgeInsets.only(
+        right: 10,
+      ),
+      decoration: BoxDecoration(
+          color: const Color(0xFFE2E2E2),
+          borderRadius: BorderRadius.circular(5)),
+      child: Column(
+        children: [
+          Text(
+            titulo,
+            style: GoogleFonts.poppins(
+              textStyle: const TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Text(
+            cantidad,
+            style: GoogleFonts.poppins(
+              textStyle: const TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
