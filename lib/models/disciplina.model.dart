@@ -39,6 +39,7 @@ class BanderasDisciplina {
   late String club;
   late bool evidencia;
   late Timestamp fechaDelActo;
+  late String camporee;
 
   BanderasDisciplina({
     this.banderaId,
@@ -50,6 +51,7 @@ class BanderasDisciplina {
     required this.club,
     required this.evidencia,
     required this.fechaDelActo,
+    required this.camporee,
   });
 
   BanderasDisciplina.fromDocumentSnapshot(
@@ -64,5 +66,6 @@ class BanderasDisciplina {
     evidencia = documentSnapshot['evidencia'] ?? false;
     fechaDelActo = documentSnapshot['fechaDelActo'] ??
         DateTime.now().millisecondsSinceEpoch;
+    camporee = documentSnapshot['camporee'] ?? '';
   }
 }

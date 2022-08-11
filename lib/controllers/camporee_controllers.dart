@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class CamporeeController extends GetxController {
   var dropdownvalueTipoCamporee = 'Aventureros';
   var isLoading = false;
+  var isActive = false;
 
   var txtNombreCamporee = TextEditingController();
   var txtFechaComienzo = TextEditingController();
@@ -41,6 +42,11 @@ class CamporeeController extends GetxController {
 
   writeInputDatePickerEnd(DateTime date) {
     txtFechaFinal.text = date.toString();
+    update();
+  }
+
+  changeIsActive(value) {
+    isActive = value;
     update();
   }
 }

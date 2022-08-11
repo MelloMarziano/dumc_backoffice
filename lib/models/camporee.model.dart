@@ -7,6 +7,7 @@ class CamporeeModel {
   late Timestamp fechaInicial;
   late Timestamp fechaFinal;
   late num idCamporee;
+  late bool isActivo;
 
   CamporeeModel({
     this.camporeeId,
@@ -15,6 +16,7 @@ class CamporeeModel {
     required this.fechaInicial,
     required this.fechaFinal,
     required this.idCamporee,
+    required this.isActivo,
   });
 
   CamporeeModel.fromDocumentSnapshot(
@@ -27,5 +29,6 @@ class CamporeeModel {
     fechaFinal =
         documentSnapshot['fechaFinal'] ?? DateTime.now().millisecondsSinceEpoch;
     idCamporee = documentSnapshot['idCamporee'] ?? 0;
+    isActivo = documentSnapshot['isActivo'] ?? false;
   }
 }

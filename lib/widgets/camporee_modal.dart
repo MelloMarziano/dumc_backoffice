@@ -3,6 +3,7 @@ import 'package:dumc_backoffice/controllers/camporee_controllers.dart';
 import 'package:dumc_backoffice/controllers/clubs_controller.dart';
 
 import 'package:dumc_backoffice/themes/colores.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -248,6 +249,53 @@ class _CamporeeCreateModalState extends State<CamporeeCreateModal> {
                 ),
               ),
               const SizedBox(
+                width: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Activo',
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            color: Color(0xFF0d2d52),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      CupertinoSwitch(
+                        value: controller.isActive,
+                        onChanged: (value) {
+                          controller.changeIsActive(value);
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: Text(
+                      '* Al activar este camporee desactivaras el que este activo actualmente.',
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
                 height: 30,
               ),
               Center(
@@ -277,6 +325,7 @@ class _CamporeeCreateModalState extends State<CamporeeCreateModal> {
                             DateTime.parse(controller.txtFechaFinal.text)
                                 .millisecondsSinceEpoch,
                         'idCamporee': 1,
+                        'isActivo': controller.isActive,
                       };
 
                       //print(datos);

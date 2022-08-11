@@ -82,11 +82,15 @@ class DisciplinaController extends GetxController {
         final camporeeModel =
             CamporeeModel.fromDocumentSnapshot(documentSnapshot: camporee);
         camporees.add(camporeeModel);
-        banderasList.bindStream(getBanderasSnapshot(
-          'Central Mella',
-          camporeeModel.fechaInicial,
-          camporeeModel.fechaFinal,
-        ));
+        if (camporeeModel.isActivo) {
+          print(
+              'Estoooooooooo es camporeeeeeeeeeeeeeee ${camporeeModel.nombreCamporee}');
+          banderasList.bindStream(getBanderasSnapshot(
+            'Central Mella',
+            camporeeModel.nombreCamporee,
+          ));
+        }
+
         update();
       }
       return camporees;
@@ -94,12 +98,11 @@ class DisciplinaController extends GetxController {
   }
 
   Stream<List<BanderasDisciplina>> getBanderasSnapshot(
-      String club, Timestamp fechaInicial, Timestamp fechaFinal) {
+      String club, String nombreCamporee) {
     late Stream<QuerySnapshot>? query;
     query = collectionReferenceBanderas
         .where('club', isEqualTo: club)
-        .where('fechaDelActo', isGreaterThanOrEqualTo: fechaInicial)
-        //.where('fechaDelActo', isGreaterThanOrEqualTo: fechaFinal)
+        .where('camporee', isEqualTo: nombreCamporee)
         .snapshots();
     update();
 
