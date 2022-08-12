@@ -40,6 +40,7 @@ class BanderasDisciplina {
   late bool evidencia;
   late Timestamp fechaDelActo;
   late String camporee;
+  late int cantidaCinta;
 
   BanderasDisciplina({
     this.banderaId,
@@ -52,6 +53,7 @@ class BanderasDisciplina {
     required this.evidencia,
     required this.fechaDelActo,
     required this.camporee,
+    required this.cantidaCinta,
   });
 
   BanderasDisciplina.fromDocumentSnapshot(
@@ -67,5 +69,6 @@ class BanderasDisciplina {
     fechaDelActo = documentSnapshot['fechaDelActo'] ??
         DateTime.now().millisecondsSinceEpoch;
     camporee = documentSnapshot['camporee'] ?? '';
+    cantidaCinta = documentSnapshot['cantidaCinta'] ?? 0;
   }
 }

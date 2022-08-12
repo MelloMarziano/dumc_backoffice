@@ -107,10 +107,22 @@ class _DisciplinaModalCreateModalState
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                _cantidadTotal('Banderas Amarillas', '14'),
-                                _cantidadTotal('Banderas Azules', '14'),
-                                _cantidadTotal('Banderas Rojas', '14'),
-                                _cantidadTotal('Total puntos', '14'),
+                                _cantidadTotal(
+                                    'Banderas Amarillas',
+                                    controller.banderasAmarillas.toString(),
+                                    Color(0xFFFDB850)),
+                                _cantidadTotal(
+                                    'Banderas Azules',
+                                    controller.banderasAzules.toString(),
+                                    Color(0xFF015EA7)),
+                                _cantidadTotal(
+                                    'Banderas Rojas',
+                                    controller.banderaRoja.toString(),
+                                    Color(0xFFD9114A)),
+                                _cantidadTotal(
+                                    'Total puntos',
+                                    '-${controller.cantidaPuntos}',
+                                    Color(0xFF808080)),
                               ],
                             ),
                           ),
@@ -235,7 +247,7 @@ class _DisciplinaModalCreateModalState
         });
   }
 
-  Container _cantidadTotal(String titulo, String cantidad) {
+  Container _cantidadTotal(String titulo, String cantidad, Color color) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -244,16 +256,15 @@ class _DisciplinaModalCreateModalState
       margin: EdgeInsets.only(
         right: 10,
       ),
-      decoration: BoxDecoration(
-          color: const Color(0xFFE2E2E2),
-          borderRadius: BorderRadius.circular(5)),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(5)),
       child: Column(
         children: [
           Text(
             titulo,
             style: GoogleFonts.poppins(
               textStyle: const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -263,7 +274,7 @@ class _DisciplinaModalCreateModalState
             cantidad,
             style: GoogleFonts.poppins(
               textStyle: const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),

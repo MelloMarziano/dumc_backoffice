@@ -29,6 +29,11 @@ class DisciplinaController extends GetxController {
 
   var dropDownZona = [''];
 
+  var banderasAmarillas = 0;
+  var banderasAzules = 0;
+  var banderaRoja = 0;
+  var cantidaPuntos = 0;
+
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late CollectionReference collectionReference;
   late CollectionReference collectionReferenceBanderas;
@@ -138,8 +143,26 @@ class DisciplinaController extends GetxController {
       for (var bandera in query.docs) {
         final banderaModel =
             BanderasDisciplina.fromDocumentSnapshot(documentSnapshot: bandera);
+        if (banderaModel.codigoFalta.contains('AM')) {
+          banderasAmarillas += banderaModel.cantidaCinta;
+          update();
+        }
+        if (banderaModel.codigoFalta.contains('R')) {
+          banderaRoja += banderaModel.cantidaCinta;
+          update();
+        }
+        if (banderaModel.codigoFalta.contains('AZ')) {
+          banderasAzules += banderaModel.cantidaCinta;
+          update();
+        }
         banderas.add(banderaModel);
       }
+      cantidaPuntos += (banderasAmarillas ~/ 3) * 10;
+      banderasAzules += banderasAmarillas ~/ 3;
+      cantidaPuntos += (banderasAzules ~/ 2) * 25;
+      banderaRoja += (banderasAzules ~/ 2);
+      cantidaPuntos += banderaRoja * 25;
+
       update();
       return banderas;
     });

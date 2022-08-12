@@ -34,6 +34,9 @@ class _UserCreateModalState extends State<UserCreateModal> {
     'Zona 7',
     'Zona 8',
     'Zona 9',
+    'Zona 10',
+    'Invitado',
+    'ACD'
   ];
   @override
   Widget build(BuildContext context) {
