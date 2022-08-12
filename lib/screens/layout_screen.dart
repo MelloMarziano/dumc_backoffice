@@ -83,14 +83,14 @@ class LayoutScreen extends StatelessWidget {
                 isSelected: _.selectedItem['selectClub']!,
               ),
               CollapsibleItem(
-                text: 'Evaluaciones',
-                icon: Icons.assignment,
+                text: 'Uniformidad',
+                icon: Icons.military_tech,
                 onPressed: () {
-                  _.changeSelected('selectEvaluation');
+                  _.changeSelected('selectUniformidad');
                   animateController.reset();
                   _.changeView(EvaluationScreen());
                 },
-                isSelected: _.selectedItem['selectEvaluation']!,
+                isSelected: _.selectedItem['selectUniformidad']!,
               ),
               CollapsibleItem(
                 text: 'Preguntas',

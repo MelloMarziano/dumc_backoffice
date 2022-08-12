@@ -26,7 +26,7 @@ class EvaluationScreen extends StatelessWidget {
         child: Column(
           children: [
             const AppBarWidget(
-              title: 'Evaluaciones',
+              title: 'Uniformidad',
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
