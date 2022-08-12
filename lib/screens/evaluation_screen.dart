@@ -4,6 +4,7 @@ import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/app_bar.dart';
 import 'package:dumc_backoffice/widgets/datatable.dart';
 import 'package:dumc_backoffice/widgets/evaluation_datatable.dart';
+import 'package:dumc_backoffice/widgets/new_uniformidad_modal.dart';
 import 'package:dumc_backoffice/widgets/new_user_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -79,17 +80,6 @@ class EvaluationScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              height: 600,
-              //decoration: BoxDecoration(border: Border.all()),
-              child: const EvaluationDataTableWidget(
-                titleTable: [
-                  'Evaluacion',
-                  'Puntuacion maxima',
-                  'Action',
-                ],
-              ),
-            )
           ],
         ),
       ),
@@ -101,7 +91,7 @@ class EvaluationScreen extends StatelessWidget {
     showDialog(
         context: context,
         builder: (context) {
-          return UserCreateModal();
+          return UniformidadCreateModal();
         });
   }
 }

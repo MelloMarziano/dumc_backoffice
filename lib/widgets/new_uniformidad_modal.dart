@@ -1,9 +1,7 @@
-import 'package:dumc_backoffice/controllers/user_controller.dart';
+import 'package:dumc_backoffice/controllers/uniformidad_controller.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UniformidadCreateModal extends StatefulWidget {
@@ -12,23 +10,24 @@ class UniformidadCreateModal extends StatefulWidget {
 }
 
 class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
-  var rango = [
+  var tipo = [
     'Selecciona un tipo',
     'Aventureros',
     'Conquistadores',
-    'Explorador',
+    'Guias Mayores',
   ];
 
-  var zona = [
+  var criterio = [
     'Selecciona un criterio',
     'Diseño',
     'Insignias Básicas',
     'Insignias de Clase',
-    'Banda de Especialidades'
+    'Banda de Especialidades',
   ];
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UserController>(
+    return GetBuilder<UniformidadController>(
+      init: UniformidadController(),
       builder: (controller) => AlertDialog(
         //title: Text('Cupertino Dialog'),
         content: Container(
@@ -51,7 +50,7 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                     width: 10,
                   ),
                   Text(
-                    'Crear usuario nuevo',
+                    'Crear nueva evaluacion',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                         color: Color(0xFF0d2d52),
@@ -74,7 +73,7 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
               ),
               const Divider(),
               Text(
-                'Zona',
+                'Tipo club',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Color(0xFF0d2d52),
@@ -82,9 +81,9 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                   ),
                 ),
               ),
-              // const SizedBox(
-              //   height: 5,
-              // ),
+              const SizedBox(
+                height: 5,
+              ),
               DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -108,14 +107,14 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                   ),
                   child: DropdownButton(
                     // Initial Value
-                    value: controller.dropdownvalueZona.toString(),
+                    value: controller.dropdownvalueTipo.toString(),
                     isExpanded: true, //make true to take width of parent widget
                     underline: Container(),
                     // Down Arrow Icon
                     icon: const Icon(Icons.keyboard_arrow_down),
 
                     // Array list of items
-                    items: zona.map((String items) {
+                    items: tipo.map((String items) {
                       return DropdownMenuItem(
                         value: items,
                         child: Text(items),
@@ -124,16 +123,16 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                     // After selecting the desired option,it will
                     // change button value to selected value
                     onChanged: (String? newValue) {
-                      controller.changeZona(newValue!);
+                      //controller.changeZona(newValue!);
                     },
                   ),
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
-                'Titulo pregunta',
+                'Criterio',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     color: Color(0xFF0d2d52),
@@ -141,78 +140,229 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: TextField(
-                  //controller: controller.txtNombre,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+              const SizedBox(
+                height: 5,
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: const <BoxShadow>[
+                    BoxShadow(
+                      color: Color.fromRGBO(
+                        0,
+                        0,
+                        0,
+                        0.57,
+                      ), //shadow for button
+                      blurRadius: 2,
+                    ) //blur radius of shadow
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    right: 5,
+                    left: 10,
+                  ),
+                  child: DropdownButton(
+                    // Initial Value
+                    value: controller.dropdownvalueCriterio.toString(),
+                    isExpanded: true, //make true to take width of parent widget
+                    underline: Container(),
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: criterio.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      //controller.changeZona(newValue!);
+                    },
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-
-              const SizedBox(
-                height: 10,
-              ),
-
-              const SizedBox(
-                height: 10,
               ),
               const SizedBox(
                 height: 20,
               ),
               Row(
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Administrador',
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            color: Color(0xFF0d2d52),
-                            fontWeight: FontWeight.w700,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Titulo pregunta',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Color(0xFF0d2d52),
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      CupertinoSwitch(
-                        value: controller.isAdmin,
-                        onChanged: (value) {
-                          controller.changeIsAdmin(value);
-                        },
-                      ),
-                    ],
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: TextField(
+                            controller: controller.txtTituloPregunta,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Activo',
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            color: Color(0xFF0d2d52),
-                            fontWeight: FontWeight.w700,
+                  Container(
+                    width: 150,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Valor',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Color(0xFF0d2d52),
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      CupertinoSwitch(
-                        value: controller.isActive,
-                        onChanged: (value) {
-                          controller.changeIsActive(value);
-                        },
-                      ),
-                    ],
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: controller.txtPreguntaValor,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sub-pregunta 1',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Color(0xFF0d2d52),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: TextField(
+                            controller: controller.txtPreguntaUno,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sub-pregunta 2*',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Color(0xFF0d2d52),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: TextField(
+                            controller: controller.txtPreguntaDos,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sub-pregunta 3*',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Color(0xFF0d2d52),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: TextField(
+                            controller: controller.txtPreguntaTres,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -222,40 +372,40 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (controller.txtNombre.text.isNotEmpty &&
-                        controller.txtDatePicker.text.isNotEmpty &&
-                        controller.txtPassword.text.isNotEmpty &&
-                        controller.dropdownvalueZona != 'Selecciona una zona') {
-                      final password = controller
-                          .encryptPassword(controller.txtPassword.text);
-                      final datos = {
-                        'nombreCompleto': controller.txtNombre.text,
-                        'userName': controller.txtUsername.text,
-                        'password': password,
-                        'zonaUsuario': controller.dropdownvalueZona,
-                        'fechaNacimiento': controller.txtDatePicker.text,
-                        'isAdmin': controller.isAdmin,
-                        'isActive': controller.isActive,
-                        'idUsuario': 1,
-                      };
-                      await controller.saveUsuario(datos);
-                      Get.back();
-                      Get.snackbar(
-                        'Confirm',
-                        'Usuario creado correctamente',
-                        colorText: Colors.white,
-                        backgroundColor: Colors.green,
-                        maxWidth: 400,
-                      );
-                    } else {
-                      Get.snackbar(
-                        'Error',
-                        'No puedes dejar campos vacios',
-                        colorText: Colors.white,
-                        backgroundColor: Color(0xFFB00020),
-                        maxWidth: 400,
-                      );
-                    }
+                    // if (controller.txtNombre.text.isNotEmpty &&
+                    //     controller.txtDatePicker.text.isNotEmpty &&
+                    //     controller.txtPassword.text.isNotEmpty &&
+                    //     controller.dropdownvalueZona != 'Selecciona una zona') {
+                    //   final password = controller
+                    //       .encryptPassword(controller.txtPassword.text);
+                    //   final datos = {
+                    //     'nombreCompleto': controller.txtNombre.text,
+                    //     'userName': controller.txtUsername.text,
+                    //     'password': password,
+                    //     'zonaUsuario': controller.dropdownvalueZona,
+                    //     'fechaNacimiento': controller.txtDatePicker.text,
+                    //     'isAdmin': controller.isAdmin,
+                    //     'isActive': controller.isActive,
+                    //     'idUsuario': 1,
+                    //   };
+                    //   await controller.saveUsuario(datos);
+                    //   Get.back();
+                    //   Get.snackbar(
+                    //     'Confirm',
+                    //     'Usuario creado correctamente',
+                    //     colorText: Colors.white,
+                    //     backgroundColor: Colors.green,
+                    //     maxWidth: 400,
+                    //   );
+                    // } else {
+                    //   Get.snackbar(
+                    //     'Error',
+                    //     'No puedes dejar campos vacios',
+                    //     colorText: Colors.white,
+                    //     backgroundColor: Color(0xFFB00020),
+                    //     maxWidth: 400,
+                    //   );
+                    // }
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(150, 50),
