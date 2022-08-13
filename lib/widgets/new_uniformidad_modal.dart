@@ -123,7 +123,7 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                     // After selecting the desired option,it will
                     // change button value to selected value
                     onChanged: (String? newValue) {
-                      //controller.changeZona(newValue!);
+                      controller.changeTipo(newValue!);
                     },
                   ),
                 ),
@@ -182,7 +182,7 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
                     // After selecting the desired option,it will
                     // change button value to selected value
                     onChanged: (String? newValue) {
-                      //controller.changeZona(newValue!);
+                      controller.changeCriterio(newValue!);
                     },
                   ),
                 ),
@@ -372,40 +372,52 @@ class _UniformidadCreateModalState extends State<UniformidadCreateModal> {
               Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    // if (controller.txtNombre.text.isNotEmpty &&
-                    //     controller.txtDatePicker.text.isNotEmpty &&
-                    //     controller.txtPassword.text.isNotEmpty &&
-                    //     controller.dropdownvalueZona != 'Selecciona una zona') {
-                    //   final password = controller
-                    //       .encryptPassword(controller.txtPassword.text);
-                    //   final datos = {
-                    //     'nombreCompleto': controller.txtNombre.text,
-                    //     'userName': controller.txtUsername.text,
-                    //     'password': password,
-                    //     'zonaUsuario': controller.dropdownvalueZona,
-                    //     'fechaNacimiento': controller.txtDatePicker.text,
-                    //     'isAdmin': controller.isAdmin,
-                    //     'isActive': controller.isActive,
-                    //     'idUsuario': 1,
-                    //   };
-                    //   await controller.saveUsuario(datos);
-                    //   Get.back();
-                    //   Get.snackbar(
-                    //     'Confirm',
-                    //     'Usuario creado correctamente',
-                    //     colorText: Colors.white,
-                    //     backgroundColor: Colors.green,
-                    //     maxWidth: 400,
-                    //   );
-                    // } else {
-                    //   Get.snackbar(
-                    //     'Error',
-                    //     'No puedes dejar campos vacios',
-                    //     colorText: Colors.white,
-                    //     backgroundColor: Color(0xFFB00020),
-                    //     maxWidth: 400,
-                    //   );
-                    // }
+                    if (controller.txtTituloPregunta.text.isNotEmpty &&
+                        controller.txtPreguntaValor.text.isNotEmpty &&
+                        controller.txtPreguntaUno.text.isNotEmpty &&
+                        controller.dropdownvalueCriterio !=
+                            'Selecciona un criterio' &&
+                        controller.dropdownvalueTipo != 'Selecciona un tipo') {
+                      int valor =
+                          int.tryParse(controller.txtPreguntaValor.text) ?? 0;
+                      if (valor <= 0) {
+                        Get.snackbar(
+                          'Error',
+                          'Debes poner un valor numerico',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.red,
+                          maxWidth: 400,
+                        );
+                        return;
+                      }
+
+                      final datos = {
+                        'tituloPregunta': controller.txtTituloPregunta.text,
+                        'criterio': controller.dropdownvalueCriterio,
+                        'tipoClub': controller.dropdownvalueTipo,
+                        'preguntaUno': controller.txtPreguntaUno.text,
+                        'preguntaDos': controller.txtPreguntaDos.text,
+                        'preguntaTres': controller.txtPreguntaTres.text,
+                        'valor': valor,
+                      };
+                      await controller.savePreguntaUniformidad(datos);
+                      Get.back();
+                      Get.snackbar(
+                        'Confirm',
+                        'Usuario creado correctamente',
+                        colorText: Colors.white,
+                        backgroundColor: Colors.green,
+                        maxWidth: 400,
+                      );
+                    } else {
+                      Get.snackbar(
+                        'Error',
+                        'No puedes dejar campos vacios',
+                        colorText: Colors.white,
+                        backgroundColor: Color(0xFFB00020),
+                        maxWidth: 400,
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(150, 50),
