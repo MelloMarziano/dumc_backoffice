@@ -41,6 +41,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UserController>(
+      init: UserController(),
       builder: (controller) => AlertDialog(
         //title: Text('Cupertino Dialog'),
         content: Container(

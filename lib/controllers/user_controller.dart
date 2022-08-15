@@ -73,14 +73,10 @@ class UserController extends GetxController {
   }
 
   encryptPassword(String password) {
-    final key = keyEnc.Key.fromSecureRandom(32);
-    final iv = keyEnc.IV.fromSecureRandom(16);
-    final encrypter = keyEnc.Encrypter(keyEnc.AES(key));
+    var enco = utf8.encode(password);
+    return base64.encode(enco);
 
-    final encrypted = encrypter.encrypt(password, iv: iv);
-    //final decrypted = encrypter.decrypt(encrypted, iv: iv);
-
-    return encrypted.base64;
+    // return encrypted.base64;
   }
 
   Stream<List<UsuariosModel>> getDisciplinaSnapshot() {
