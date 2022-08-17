@@ -177,7 +177,8 @@ class _UserCreateModalState extends State<UserCreateModal> {
                                 suffixIcon: IconButton(
                                   padding: EdgeInsets.all(0),
                                   onPressed: () {
-                                    controller.showPassword();
+                                    controller.showPassword(
+                                        !controller.noShowPasswordLogin);
                                   },
                                   icon: (controller.noShowPasswordLogin)
                                       ? const Icon(Icons.visibility_off,
@@ -398,18 +399,27 @@ class _UserCreateModalState extends State<UserCreateModal> {
                       };
                       if (widget.userID.isNotEmpty) {
                         await controller.updateUsuario(widget.userID, datos);
+                        Get.back();
+                        controller.cleanAll();
+                        Get.snackbar(
+                          'Confirm',
+                          'Usuario Actualizado correctamente',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.orange,
+                          maxWidth: 400,
+                        );
                       } else {
                         await controller.saveUsuario(datos);
+                        Get.back();
+                        controller.cleanAll();
+                        Get.snackbar(
+                          'Confirm',
+                          'Usuario creado correctamente',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.green,
+                          maxWidth: 400,
+                        );
                       }
-
-                      Get.back();
-                      Get.snackbar(
-                        'Confirm',
-                        'Usuario creado correctamente',
-                        colorText: Colors.white,
-                        backgroundColor: Colors.green,
-                        maxWidth: 400,
-                      );
                     } else {
                       Get.snackbar(
                         'Error',

@@ -66,6 +66,7 @@ class UserScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    _.cleanAll();
                     _showCupertinoDialog(context, _);
                   },
                   style: ElevatedButton.styleFrom(

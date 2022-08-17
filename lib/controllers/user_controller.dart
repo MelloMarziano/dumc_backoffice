@@ -4,7 +4,9 @@ import 'package:encrypt/encrypt.dart' as keyEnc;
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../models/users.model.dart';
@@ -53,8 +55,8 @@ class UserController extends GetxController {
     update();
   }
 
-  showPassword() {
-    noShowPasswordLogin = !noShowPasswordLogin;
+  showPassword(bool val) {
+    noShowPasswordLogin = val;
     update();
   }
 
@@ -91,6 +93,17 @@ class UserController extends GetxController {
   decryptPassword(String password) {
     var pass = utf8.decode(base64.decode(password)).toString();
     txtPassword.text = pass;
+    update();
+  }
+
+  cleanAll() {
+    txtNombre.clear();
+    txtDatePicker.clear();
+    txtPassword.clear();
+    txtUsername.clear();
+    changeIsActive(false);
+    changeIsAdmin(false);
+    changeZona('Selecciona una zona');
     update();
   }
 
@@ -139,15 +152,14 @@ class UserController extends GetxController {
               onPressed: () {
                 txtNombre.text = record.nombreCompleto;
                 txtUsername.text = record.userName;
-                txtPassword.text = record.userPassword;
+                //txtPassword.text = decryptPassword(record.userPassword);
                 txtDatePicker.text = record.fechaNacimiento;
                 isActive = record.isActive;
                 isAdmin = record.isAdmin;
                 changeZona(record.zonaUsuario);
-                //decryptPassword(record.userPassword);
-                showPassword();
+                decryptPassword(record.userPassword);
+                showPassword(true);
                 update();
-                print(record.usuarioId);
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -167,7 +179,82 @@ class UserController extends GetxController {
               width: 10,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Container(
+                          height: 400,
+                          width: 600,
+                          color: Colors.white,
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.highlight_off,
+                                size: 64,
+                                color: Colors.red,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                'Deseas eliminar a: ${record.nombreCompleto}',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(150, 40),
+                                      primary: Colors.red,
+                                    ),
+                                    child: const Text('Cancelar'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      await collectionReference
+                                          .doc(record.usuarioId)
+                                          .delete();
+                                      Get.back();
+                                      Get.snackbar(
+                                        'Confirm',
+                                        'Usuario borrado correctamente',
+                                        colorText: Colors.white,
+                                        backgroundColor: Colors.green,
+                                        maxWidth: 400,
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        fixedSize: const Size(150, 40),
+                                        primary: Colors.red.shade300),
+                                    child: const Text('Borrar'),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              },
               style: ElevatedButton.styleFrom(
                 //fixedSize: const Size(150, 40),
                 primary: Color(0xFFB00020),
