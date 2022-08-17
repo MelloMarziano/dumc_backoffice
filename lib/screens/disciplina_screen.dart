@@ -76,13 +76,15 @@ class DisciplinaScreen extends StatelessWidget {
             Container(
               height: 600,
               width: double.infinity,
-              child: DisciplinaDataTableWidget(
-                titleTable: [
-                  'Tipo de cinta',
-                  'Codigo de falta',
-                  'Descripcion',
-                  'Cantidad de cintas'
-                ],
+              child: const SingleChildScrollView(
+                child: DisciplinaDataTableWidget(
+                  titleTable: [
+                    'Tipo de cinta',
+                    'Codigo de falta',
+                    'Descripcion',
+                    'Cantidad de cintas'
+                  ],
+                ),
               ),
             )
           ],

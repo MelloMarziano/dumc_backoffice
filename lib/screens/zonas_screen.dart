@@ -75,12 +75,14 @@ class ZonaScreen extends StatelessWidget {
             Container(
               height: 600,
               //decoration: BoxDecoration(border: Border.all()),
-              child: const ZonaDataTableWidget(
-                titleTable: [
-                  'Division',
-                  'Nombre',
-                  'Cordinador',
-                ],
+              child: const SingleChildScrollView(
+                child: ZonaDataTableWidget(
+                  titleTable: [
+                    'Division',
+                    'Nombre',
+                    'Cordinador',
+                  ],
+                ),
               ),
             )
           ],

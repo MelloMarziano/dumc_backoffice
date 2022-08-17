@@ -9,20 +9,19 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class LayoutController extends GetxController {
   late Widget pageToShow;
   Map<String, bool> selectedItem = {
-    'selectDashboard': false,
+    'selectDashboard': true,
     'selectCamporee': false,
     'selectUser': false,
     'selectZone': false,
     'selectClub': false,
-    'selectUniformidad': true,
-    'selectQuiz': false,
+    'selectUniformidad': false,
     'selectDisciplina': false,
   };
 
   @override
   void onInit() async {
     super.onInit();
-    changeView(EvaluationScreen());
+    changeView(HomeScreen());
   }
 
   changeSelected(term) {

@@ -30,8 +30,8 @@ class _DisciplinaModalCreateModalState
           return AlertDialog(
             //title: Text('Cupertino Dialog'),
             content: Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.8,
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,16 +228,18 @@ class _DisciplinaModalCreateModalState
                     height: 20,
                   ),
                   Container(
-                    height: 300,
+                    height: 520,
                     width: double.infinity,
-                    child: const DisciplinaDEtailTableDataTableWidget(
-                      titleTable: [
-                        'Evaluador',
-                        'Codigo de falta',
-                        'Detalle',
-                        'Evidencia',
-                        'Fecha',
-                      ],
+                    child: const SingleChildScrollView(
+                      child: DisciplinaDEtailTableDataTableWidget(
+                        titleTable: [
+                          'Evaluador',
+                          'Codigo de falta',
+                          'Detalle',
+                          'Evidencia',
+                          'Fecha',
+                        ],
+                      ),
                     ),
                   )
                 ],

@@ -75,14 +75,16 @@ class ClubsScreen extends StatelessWidget {
             Container(
               height: 600,
               width: double.infinity,
-              child: const ClubsDataTableWidget(
-                titleTable: [
-                  'Zona',
-                  'Nombre club',
-                  'Director club',
-                  'Iglesia club',
-                  'Acciones'
-                ],
+              child: const SingleChildScrollView(
+                child: ClubsDataTableWidget(
+                  titleTable: [
+                    'Zona',
+                    'Nombre club',
+                    'Director club',
+                    'Iglesia club',
+                    'Acciones'
+                  ],
+                ),
               ),
             )
           ],

@@ -16,6 +16,7 @@ class _ZonaCreateModalState extends State<ZonaCreateModal> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ZonaController>(
+      init: ZonaController(),
       builder: (controller) => AlertDialog(
         //title: Text('Cupertino Dialog'),
         content: Container(

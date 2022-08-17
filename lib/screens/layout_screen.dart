@@ -93,16 +93,6 @@ class LayoutScreen extends StatelessWidget {
                 isSelected: _.selectedItem['selectUniformidad']!,
               ),
               CollapsibleItem(
-                text: 'Preguntas',
-                icon: Icons.quiz,
-                onPressed: () {
-                  _.changeSelected('selectQuiz');
-                  animateController.reset();
-                  _.changeView(QuizScreen());
-                },
-                isSelected: _.selectedItem['selectQuiz']!,
-              ),
-              CollapsibleItem(
                 text: 'Disciplina',
                 icon: Icons.rule,
                 onPressed: () {

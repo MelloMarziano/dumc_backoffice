@@ -82,15 +82,17 @@ class UserScreen extends StatelessWidget {
             Container(
               height: 600,
               width: double.infinity,
-              child: UsuariosDataTableWidget(
-                titleTable: [
-                  'Zona',
-                  'Nombre completo',
-                  'Username',
-                  'Admin',
-                  'Activo',
-                  'Acciones'
-                ],
+              child: const SingleChildScrollView(
+                child: UsuariosDataTableWidget(
+                  titleTable: [
+                    'Zona',
+                    'Nombre completo',
+                    'Username',
+                    'Admin',
+                    'Activo',
+                    'Acciones'
+                  ],
+                ),
               ),
             )
           ],

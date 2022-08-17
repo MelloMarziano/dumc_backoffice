@@ -200,7 +200,47 @@ class DisciplinaController extends GetxController {
           ),
         ],
       )),
-      DataCell(Text(data.detalle, style: GoogleFonts.poppins())),
+      DataCell(
+        Container(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                width: 500,
+                child: Text(
+                  data.detalle,
+                  softWrap: true,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.poppins(),
+                ),
+              ),
+              Visibility(
+                visible: data.detalle.length > 100,
+                child: GestureDetector(
+                    onTap: () {
+                      Get.snackbar(
+                        'Detalle de falta',
+                        data.detalle,
+                        colorText: Colors.black,
+                        backgroundColor: const Color(0xFFE2E0DF),
+                        maxWidth: 600,
+                        snackPosition: SnackPosition.BOTTOM,
+                        duration: const Duration(seconds: 120),
+                      );
+                    },
+                    child: Text(
+                      'Leer mas',
+                      style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                        color: Colors.blue,
+                      )),
+                    )),
+              ),
+            ],
+          ),
+        ),
+      ),
       DataCell(
           Text(data.evidencia ? 'Si' : 'No', style: GoogleFonts.poppins())),
       DataCell(Text((data.fechaDelActo as Timestamp).toDate().toString(),

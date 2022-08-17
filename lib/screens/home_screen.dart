@@ -194,15 +194,17 @@ class HomeScreen extends StatelessWidget {
             Container(
               height: 600,
               width: double.infinity,
-              child: const DashboardDataTableWidget(
-                titleTable: [
-                  'Zona',
-                  'Nombre club',
-                  'Disciplina',
-                  'Uniformidad',
-                  'Marcha',
-                  'Civismo',
-                ],
+              child: const SingleChildScrollView(
+                child: DashboardDataTableWidget(
+                  titleTable: [
+                    'Zona',
+                    'Nombre club',
+                    'Disciplina',
+                    'Uniformidad',
+                    'Marcha',
+                    'Civismo',
+                  ],
+                ),
               ),
             )
           ],
