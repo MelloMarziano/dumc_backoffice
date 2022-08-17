@@ -102,7 +102,7 @@ class QuizScreen extends StatelessWidget {
     showDialog(
         context: context,
         builder: (context) {
-          return UserCreateModal();
+          return const UserCreateModal(userID: '');
         });
   }
 }

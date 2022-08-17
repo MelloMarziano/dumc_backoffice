@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 
 import '../models/users.model.dart';
 import '../themes/colores.dart';
+import '../widgets/new_user_modal.dart';
 
 class UserController extends GetxController {
   var formatDate = DateFormat('dd-MM-yyyy');
@@ -38,6 +39,16 @@ class UserController extends GetxController {
 
     //data['idDisciplina'] += teams.last.idDisciplina;
     await collectionReference.add(data);
+    isLoading = false;
+    update();
+  }
+
+  updateUsuario(documentId, data) async {
+    isLoading = true;
+    update();
+
+    //data['idDisciplina'] += teams.last.idDisciplina;
+    await collectionReference.doc(documentId).update(data);
     isLoading = false;
     update();
   }
@@ -75,8 +86,12 @@ class UserController extends GetxController {
   encryptPassword(String password) {
     var enco = utf8.encode(password);
     return base64.encode(enco);
+  }
 
-    // return encrypted.base64;
+  decryptPassword(String password) {
+    var pass = utf8.decode(base64.decode(password)).toString();
+    txtPassword.text = pass;
+    update();
   }
 
   Stream<List<UsuariosModel>> getDisciplinaSnapshot() {
@@ -121,7 +136,27 @@ class UserController extends GetxController {
         Row(
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                txtNombre.text = record.nombreCompleto;
+                txtUsername.text = record.userName;
+                txtPassword.text = record.userPassword;
+                txtDatePicker.text = record.fechaNacimiento;
+                isActive = record.isActive;
+                isAdmin = record.isAdmin;
+                changeZona(record.zonaUsuario);
+                //decryptPassword(record.userPassword);
+                showPassword();
+                update();
+                print(record.usuarioId);
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return UserCreateModal(
+                      userID: record.usuarioId!,
+                    );
+                  },
+                );
+              },
               style: ElevatedButton.styleFrom(
                 //fixedSize: const Size(150, 40),
                 primary: dumncDoradoClaro,

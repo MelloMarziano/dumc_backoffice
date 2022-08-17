@@ -9,6 +9,7 @@ class UsuariosModel {
   late bool isActive;
   late bool isAdmin;
   late String fechaNacimiento;
+  late String userPassword;
 
   UsuariosModel({
     this.usuarioId,
@@ -19,6 +20,7 @@ class UsuariosModel {
     required this.isActive,
     required this.isAdmin,
     required this.fechaNacimiento,
+    required this.userPassword,
   });
 
   UsuariosModel.fromDocumentSnapshot(
@@ -31,5 +33,6 @@ class UsuariosModel {
     isActive = documentSnapshot['isActive'] ?? false;
     isAdmin = documentSnapshot['isAdmin'] ?? false;
     idUsuario = documentSnapshot['idUsuario'] ?? 0;
+    userPassword = documentSnapshot['password'] ?? '';
   }
 }

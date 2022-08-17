@@ -7,6 +7,9 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserCreateModal extends StatefulWidget {
+  final String userID;
+
+  const UserCreateModal({super.key, required this.userID});
   @override
   _UserCreateModalState createState() => _UserCreateModalState();
 }
@@ -225,7 +228,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5),
-                              boxShadow: <BoxShadow>[
+                              boxShadow: const <BoxShadow>[
                                 BoxShadow(
                                   color: Color.fromRGBO(
                                     0,
@@ -238,7 +241,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                               ],
                             ),
                             child: Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                 right: 5,
                                 left: 10,
                               ),
@@ -269,7 +272,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Expanded(
@@ -345,7 +348,7 @@ class _UserCreateModalState extends State<UserCreateModal> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Column(
@@ -393,7 +396,12 @@ class _UserCreateModalState extends State<UserCreateModal> {
                         'isActive': controller.isActive,
                         'idUsuario': 1,
                       };
-                      await controller.saveUsuario(datos);
+                      if (widget.userID.isNotEmpty) {
+                        await controller.updateUsuario(widget.userID, datos);
+                      } else {
+                        await controller.saveUsuario(datos);
+                      }
+
                       Get.back();
                       Get.snackbar(
                         'Confirm',
