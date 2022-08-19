@@ -74,7 +74,7 @@ class DisciplinaScreen extends StatelessWidget {
               height: 20,
             ),
             Container(
-              height: 600,
+              height: 550,
               width: double.infinity,
               child: const SingleChildScrollView(
                 child: DisciplinaDataTableWidget(
@@ -82,7 +82,8 @@ class DisciplinaScreen extends StatelessWidget {
                     'Tipo de cinta',
                     'Codigo de falta',
                     'Descripcion',
-                    'Cantidad de cintas'
+                    'Cantidad de cintas',
+                    'Accion',
                   ],
                 ),
               ),
@@ -98,7 +99,7 @@ class DisciplinaScreen extends StatelessWidget {
     showDialog(
         context: context,
         builder: (context) {
-          return DisciplinaCreateModal();
+          return const DisciplinaCreateModal(disciplinaID: '');
         });
   }
 }

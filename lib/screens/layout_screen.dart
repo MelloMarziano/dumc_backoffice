@@ -62,16 +62,16 @@ class LayoutScreen extends StatelessWidget {
                 },
                 isSelected: _.selectedItem['selectUser']!,
               ),
-              CollapsibleItem(
-                text: 'Zonas',
-                icon: Icons.map,
-                onPressed: () {
-                  _.changeSelected('selectZone');
-                  animateController.reset();
-                  _.changeView(ZonaScreen());
-                },
-                isSelected: _.selectedItem['selectZone']!,
-              ),
+              // CollapsibleItem(
+              //   text: 'Zonas',
+              //   icon: Icons.map,
+              //   onPressed: () {
+              //     _.changeSelected('selectZone');
+              //     animateController.reset();
+              //     _.changeView(ZonaScreen());
+              //   },
+              //   isSelected: _.selectedItem['selectZone']!,
+              // ),
               CollapsibleItem(
                 text: 'Clubes',
                 icon: Icons.groups,
@@ -82,16 +82,16 @@ class LayoutScreen extends StatelessWidget {
                 },
                 isSelected: _.selectedItem['selectClub']!,
               ),
-              CollapsibleItem(
-                text: 'Uniformidad',
-                icon: Icons.military_tech,
-                onPressed: () {
-                  _.changeSelected('selectUniformidad');
-                  animateController.reset();
-                  _.changeView(EvaluationScreen());
-                },
-                isSelected: _.selectedItem['selectUniformidad']!,
-              ),
+              // CollapsibleItem(
+              //   text: 'Uniformidad',
+              //   icon: Icons.military_tech,
+              //   onPressed: () {
+              //     _.changeSelected('selectUniformidad');
+              //     animateController.reset();
+              //     _.changeView(EvaluationScreen());
+              //   },
+              //   isSelected: _.selectedItem['selectUniformidad']!,
+              // ),
               CollapsibleItem(
                 text: 'Disciplina',
                 icon: Icons.rule,

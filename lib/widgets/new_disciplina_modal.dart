@@ -12,6 +12,9 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DisciplinaCreateModal extends StatefulWidget {
+  final String disciplinaID;
+
+  const DisciplinaCreateModal({super.key, required this.disciplinaID});
   @override
   _DisciplinaCreateModalState createState() => _DisciplinaCreateModalState();
 }
@@ -89,7 +92,7 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5),
-                  boxShadow: <BoxShadow>[
+                  boxShadow: const <BoxShadow>[
                     BoxShadow(
                       color: Color.fromRGBO(
                         0,
@@ -102,7 +105,7 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     right: 5,
                     left: 10,
                   ),
@@ -221,22 +224,37 @@ class _DisciplinaCreateModalState extends State<DisciplinaCreateModal> {
                         'tipoDisciplina': controller.dropdownvalueTipo,
                         'idDisciplina': 1,
                       };
-
-                      print(datos);
-                      await controller.saveDisciplina(datos);
-                      controller.txtBanderas.clear();
-                      controller.txtDescripcion.clear();
-                      controller.txtBanderas.clear();
-                      Get.snackbar(
-                        'Confirm',
-                        'Disciplina creada correctamente',
-                        colorText: Colors.white,
-                        backgroundColor: dumncVerde,
-                      );
+                      if (widget.disciplinaID.isNotEmpty) {
+                        await controller.updateDisciplina(
+                            widget.disciplinaID, datos);
+                        controller.txtBanderas.clear();
+                        controller.txtDescripcion.clear();
+                        controller.txtBanderas.clear();
+                        Get.back();
+                        Get.snackbar(
+                          'Confirm',
+                          'Disciplina Actualizada correctamente',
+                          colorText: Colors.white,
+                          backgroundColor: Colors.orange,
+                          maxWidth: 400,
+                        );
+                      } else {
+                        await controller.saveDisciplina(datos);
+                        controller.txtBanderas.clear();
+                        controller.txtDescripcion.clear();
+                        controller.txtBanderas.clear();
+                        Get.back();
+                        Get.snackbar(
+                          'Confirm',
+                          'Disciplina creada correctamente',
+                          colorText: Colors.white,
+                          backgroundColor: dumncVerde,
+                        );
+                      }
                     } else {
                       Get.snackbar(
-                        'Confirm',
-                        'Zona creado correctamente',
+                        'Error',
+                        'No puedes dejar campos vacios',
                         colorText: Colors.white,
                         backgroundColor: Color(0xFFB00020),
                       );

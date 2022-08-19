@@ -12,9 +12,9 @@ class LayoutController extends GetxController {
     'selectDashboard': true,
     'selectCamporee': false,
     'selectUser': false,
-    'selectZone': false,
+    //'selectZone': false,
     'selectClub': false,
-    'selectUniformidad': false,
+    //'selectUniformidad': false,
     'selectDisciplina': false,
   };
 

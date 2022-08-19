@@ -228,7 +228,7 @@ class _DisciplinaModalCreateModalState
                     height: 20,
                   ),
                   Container(
-                    height: 520,
+                    height: MediaQuery.of(context).size.height * 0.60,
                     width: double.infinity,
                     child: const SingleChildScrollView(
                       child: DisciplinaDEtailTableDataTableWidget(
@@ -238,6 +238,7 @@ class _DisciplinaModalCreateModalState
                           'Detalle',
                           'Evidencia',
                           'Fecha',
+                          'Accion',
                         ],
                       ),
                     ),

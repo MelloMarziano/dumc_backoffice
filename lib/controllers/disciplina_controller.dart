@@ -14,6 +14,9 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'dart:html' as html;
 
+import '../themes/colores.dart';
+import '../widgets/new_disciplina_modal.dart';
+
 class DisciplinaController extends GetxController {
   var txtCodigo = TextEditingController();
   var txtDescripcion = TextEditingController();
@@ -66,6 +69,14 @@ class DisciplinaController extends GetxController {
 
   changeTipo(String value) {
     dropdownvalueTipo = value;
+    update();
+  }
+
+  updateDisciplina(documentId, data) async {
+    isLoading = true;
+    update();
+    await collectionReference.doc(documentId).update(data);
+    isLoading = false;
     update();
   }
 
@@ -129,6 +140,11 @@ class DisciplinaController extends GetxController {
     String tipoClub,
     String nombreCamporee,
   ) {
+    cantidaPuntos = 0;
+    banderasAzules = 0;
+    banderasAmarillas = 0;
+    banderaRoja = 0;
+    update();
     late Stream<QuerySnapshot>? query;
     query = collectionReferenceBanderas
         .where('club', isEqualTo: club)
@@ -139,6 +155,11 @@ class DisciplinaController extends GetxController {
 
     return query.map((QuerySnapshot query) {
       List<BanderasDisciplina> banderas = [];
+      cantidaPuntos = 0;
+      banderasAzules = 0;
+      banderasAmarillas = 0;
+      banderaRoja = 0;
+      //update();
 
       for (var bandera in query.docs) {
         final banderaModel =
@@ -206,7 +227,7 @@ class DisciplinaController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
-                width: 500,
+                width: 400,
                 child: Text(
                   data.detalle,
                   softWrap: true,
@@ -243,8 +264,114 @@ class DisciplinaController extends GetxController {
       ),
       DataCell(
           Text(data.evidencia ? 'Si' : 'No', style: GoogleFonts.poppins())),
-      DataCell(Text((data.fechaDelActo as Timestamp).toDate().toString(),
-          style: GoogleFonts.poppins())),
+      DataCell(
+        Text(
+          (data.fechaDelActo as Timestamp).toDate().toString(),
+          style: GoogleFonts.poppins(),
+        ),
+      ),
+      DataCell(
+        ElevatedButton(
+          onPressed: () async {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Container(
+                      height: 400,
+                      width: 600,
+                      color: Colors.white,
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.highlight_off,
+                            size: 64,
+                            color: Colors.red,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            'Deseas eliminar la Bandera de:\n ${data.evaluador}',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  fixedSize: const Size(150, 40),
+                                  primary: Colors.red,
+                                ),
+                                child: const Text('Cancelar'),
+                              ),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  cantidaPuntos = 0;
+                                  banderasAzules = 0;
+                                  banderasAmarillas = 0;
+                                  banderaRoja = 0;
+
+                                  update();
+                                  await collectionReferenceBanderas
+                                      .doc(data.banderaId)
+                                      .delete();
+                                  // cantidaPuntos = 0;
+                                  // banderasAzules = 0;
+                                  // banderasAmarillas = 0;
+                                  // banderaRoja = 0;
+
+                                  // update();
+                                  banderasList.bindStream(getBanderasSnapshot(
+                                    nombreClubWidget,
+                                    tipoClubWidget,
+                                    dropdownvalueCamporee,
+                                  ));
+                                  Get.back();
+                                  Get.snackbar(
+                                    'Confirm',
+                                    'Disciplina borrada correctamente',
+                                    colorText: Colors.white,
+                                    backgroundColor: Colors.green,
+                                    maxWidth: 400,
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    fixedSize: const Size(150, 40),
+                                    primary: Colors.red.shade300),
+                                child: const Text('Borrar'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          },
+          style: ElevatedButton.styleFrom(
+            //fixedSize: const Size(150, 40),
+            primary: Color(0xFFB00020),
+          ),
+          child: Icon(Icons.delete),
+        ),
+      ),
     ]);
   }
 
@@ -268,6 +395,122 @@ class DisciplinaController extends GetxController {
         ),
       )),
       DataCell(Text(record.cantidadCintasDisciplina)),
+      DataCell(
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                changeTipo(record.tipoDisciplina);
+                txtCodigo.text = record.codigoDisciplina;
+                txtDescripcion.text = record.descripcionDisciplina;
+                txtBanderas.text = record.cantidadCintasDisciplina;
+
+                update();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return DisciplinaCreateModal(
+                      disciplinaID: record.disciplinaId!,
+                    );
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                //fixedSize: const Size(150, 40),
+                primary: dumncDoradoClaro,
+              ),
+              child: Icon(Icons.edit),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Container(
+                          height: 400,
+                          width: 600,
+                          color: Colors.white,
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.highlight_off,
+                                size: 64,
+                                color: Colors.red,
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                'Deseas eliminar la Disciplina con codigo:\n ${record.codigoDisciplina}',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      fixedSize: const Size(150, 40),
+                                      primary: Colors.red,
+                                    ),
+                                    child: const Text('Cancelar'),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      await collectionReference
+                                          .doc(record.disciplinaId)
+                                          .delete();
+                                      Get.back();
+                                      Get.snackbar(
+                                        'Confirm',
+                                        'Disciplina borrada correctamente',
+                                        colorText: Colors.white,
+                                        backgroundColor: Colors.green,
+                                        maxWidth: 400,
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        fixedSize: const Size(150, 40),
+                                        primary: Colors.red.shade300),
+                                    child: const Text('Borrar'),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              },
+              style: ElevatedButton.styleFrom(
+                //fixedSize: const Size(150, 40),
+                primary: Color(0xFFB00020),
+              ),
+              child: Icon(Icons.delete),
+            ),
+          ],
+        ),
+      ),
     ]);
   }
 

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dumc_backoffice/models/clubs.model.dart';
 import 'package:dumc_backoffice/themes/colores.dart';
 import 'package:dumc_backoffice/widgets/disciplina_detail_modal.dart';
+import 'package:dumc_backoffice/widgets/uniformidad_detail_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -99,7 +100,16 @@ class HomeController extends GetxController {
               width: 10,
             ),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return UniformidadDetailModal(
+                          nombreClub: data.nombreClub,
+                          tipoClub: data.tipoClub,
+                        );
+                      });
+                },
                 icon: const Icon(
                   Icons.visibility,
                   color: dumncVerde,
