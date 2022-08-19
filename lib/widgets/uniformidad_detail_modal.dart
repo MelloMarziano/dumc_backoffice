@@ -86,89 +86,158 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                             //color: Colors.grey.shade200,
                             child: SingleChildScrollView(
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Center(
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 14,
+                                      vertical: 5,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.black,
+                                    ),
                                     child: Text(
-                                      'Formulario Oficial de Evaluación de Uniformidad',
+                                      widget.tipoClub,
                                       style: GoogleFonts.poppins(
                                         textStyle: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 30,
+                                    height: 10,
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10),
-                                          bottomRight: Radius.circular(20),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          width: double.infinity,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'ASOCIACION CENTRAL DOMINICANA, DEPARTAMENTO DE JOVENES',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                'Comisión de Disciplina, Uniformidad, Marcha y Civismo (DUMC)',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                'Formulario Oficial de Evaluación de Uniformidad',
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            alignment: Alignment.center,
-                                            height: 80,
-                                            width: 100,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(10),
-                                                topRight: Radius.circular(10),
-                                              ),
-                                            ),
-                                            child: Text(
-                                              controller.uniformidadEvaluada
-                                                  .first.puntosTotales
-                                                  .toString(),
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Container(
+                                          height: 100,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                              bottomRight: Radius.circular(20),
                                             ),
                                           ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            height: 18,
-                                            width: 100,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.black,
-                                              borderRadius: BorderRadius.only(
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                              ),
-                                            ),
-                                            child: Text(
-                                              'PUNTUACION',
-                                              style: GoogleFonts.poppins(
-                                                textStyle: const TextStyle(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                height: 80,
+                                                width: 100,
+                                                decoration: const BoxDecoration(
                                                   color: Colors.white,
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(10),
+                                                    topRight:
+                                                        Radius.circular(10),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                  controller.uniformidadEvaluada
+                                                      .first.puntosTotales
+                                                      .toString(),
+                                                  style: GoogleFonts.poppins(
+                                                    textStyle: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 30,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                height: 18,
+                                                width: 100,
+                                                decoration: const BoxDecoration(
+                                                  color: Colors.black,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomRight:
+                                                        Radius.circular(20),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                  'PUNTUACION',
+                                                  style: GoogleFonts.poppins(
+                                                    textStyle: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 30,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -193,7 +262,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         widget.nombreClub,
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -214,10 +283,12 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        'Zona 6',
+                                        controller
+                                            .uniformidadEvaluada.first.zona
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -238,10 +309,12 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        'eliu Ortega',
+                                        controller
+                                            .uniformidadEvaluada.first.evaluador
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -272,10 +345,12 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '11',
+                                        controller
+                                            .uniformidadEvaluada.first.ninos
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -298,10 +373,12 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '11',
+                                        controller
+                                            .uniformidadEvaluada.first.ninas
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -324,10 +401,14 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '22',
+                                        (controller.uniformidadEvaluada.first
+                                                    .ninos +
+                                                controller.uniformidadEvaluada
+                                                    .first.ninas)
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -350,10 +431,12 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '11',
+                                        controller.uniformidadEvaluada.first
+                                            .dirigentesM
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -376,10 +459,12 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '11',
+                                        controller.uniformidadEvaluada.first
+                                            .dirigentesF
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -402,10 +487,14 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '22',
+                                        (controller.uniformidadEvaluada.first
+                                                    .dirigentesM +
+                                                controller.uniformidadEvaluada
+                                                    .first.dirigentesF)
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -428,10 +517,18 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         width: 5,
                                       ),
                                       Text(
-                                        '22',
+                                        (controller.uniformidadEvaluada.first
+                                                    .dirigentesM +
+                                                controller.uniformidadEvaluada
+                                                    .first.dirigentesF +
+                                                controller.uniformidadEvaluada
+                                                    .first.ninos +
+                                                controller.uniformidadEvaluada
+                                                    .first.ninas)
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           textStyle: const TextStyle(
-                                            color: Colors.red,
+                                            color: Colors.black,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -449,7 +546,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
+                                                0.289,
                                         color: Colors.black,
                                         child: Text(
                                           'CRITERIO',
@@ -467,7 +564,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
+                                                0.289,
                                         color: Colors.black,
                                         child: Text(
                                           'VALOR GENERAL: 100 PTOS',
@@ -491,10 +588,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             right: BorderSide(),
                                           ),
                                         ),
@@ -516,10 +613,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             left: BorderSide(),
                                           ),
                                         ),
@@ -539,12 +636,51 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                   preguntasRespuestas(
                                     context,
                                     '- Camisas: con Galones y 2 Bolsillos con Tapa',
-                                    'Pares de Galones faltantes',
-                                    '3',
-                                    'Bolsillos con tapa incorrectos',
-                                    '3',
-                                    '',
-                                    '',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoUno,
+                                    10,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Pantalones: Sin pinzas y con 2 bolsillos sin Tapa',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoDos,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Falda corte A: debajo de las rodillas con plisado',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoTres,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Zapatos negros cerrados Formales',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoCuatro,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Medias 3/4 (Niños y dirigentes negras. / Niñas blancas)',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoCinco,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Correa negra Conquistadores / Dirigentes',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoSeis,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Boina de conquistadores o GM para dirigentes',
+                                    controller
+                                        .uniformidadEvaluada.first.disenoSiete,
+                                    5,
                                   ),
                                   Row(
                                     children: [
@@ -555,10 +691,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             right: BorderSide(),
                                           ),
                                         ),
@@ -580,10 +716,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             left: BorderSide(),
                                           ),
                                         ),
@@ -609,10 +745,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             right: BorderSide(),
                                           ),
                                         ),
@@ -634,10 +770,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             left: BorderSide(),
                                           ),
                                         ),
@@ -663,10 +799,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             right: BorderSide(),
                                           ),
                                         ),
@@ -688,10 +824,10 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         height: 30,
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.285,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade400,
-                                          border: const Border(
+                                                0.289,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xFF6F737C),
+                                          border: Border(
                                             left: BorderSide(),
                                           ),
                                         ),
@@ -721,23 +857,25 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
   }
 
   Row preguntasRespuestas(
-      BuildContext context,
-      String pregunta,
-      String subPregunta1,
-      String result1,
-      String subPregunta2,
-      String result2,
-      String subPregunta3,
-      String result3) {
+    BuildContext context,
+    String pregunta,
+    int valorPregunta,
+    int valorCampo,
+  ) {
     return Row(
       children: [
         Container(
           padding: const EdgeInsets.only(left: 10),
           alignment: Alignment.centerLeft,
-          height: 60,
-          width: MediaQuery.of(context).size.width * 0.285,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade400),
+          height: 40,
+          width: MediaQuery.of(context).size.width * 0.289,
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(color: Colors.grey),
+              bottom: BorderSide(color: Colors.grey),
+              top: BorderSide(color: Colors.grey),
+              right: BorderSide(color: Colors.black),
+            ),
           ),
           child: Text(
             pregunta,
@@ -752,10 +890,15 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
         Container(
           padding: const EdgeInsets.only(left: 10),
           alignment: Alignment.centerLeft,
-          height: 60,
-          width: MediaQuery.of(context).size.width * 0.285,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade400),
+          height: 40,
+          width: MediaQuery.of(context).size.width * 0.289,
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(color: Colors.black),
+              bottom: BorderSide(color: Colors.grey),
+              top: BorderSide(color: Colors.grey),
+              right: BorderSide(color: Colors.grey),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -766,90 +909,41 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    subPregunta1,
+                    valorPregunta.toString(),
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal),
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
                   Text(
-                    result1.toString(),
+                    '/',
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                         color: Colors.red,
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    valorCampo.toString(),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
                 ],
-              ),
-              Visibility(
-                visible: subPregunta2.isNotEmpty,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      subPregunta2,
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      result2.toString(),
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: subPregunta3.isNotEmpty,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      subPregunta3,
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      result3.toString(),
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
             ],
           ),

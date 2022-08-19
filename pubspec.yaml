@@ -48,6 +48,18 @@ dependencies:
   pdf: ^3.8.2
   printing: ^5.9.2
   expandable: ^5.0.1
+  flutter_launcher_icons: ^0.9.3
+
+flutter_icons:
+  #android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo/icono.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/logo/icono.png"
+    
+ 
 
 dev_dependencies:
   flutter_test:

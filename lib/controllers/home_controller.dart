@@ -13,7 +13,7 @@ class HomeController extends GetxController {
   late CollectionReference collectionReference;
   late CollectionReference snapShotString;
 
-  var dropdownvalueZona = 'Zona 6';
+  var dropdownvalueZona = 'Zona 1';
   var dropdownvaluetipoClub = 'Conquistadores';
 
   Rx<List<ClubsModel>> clubesList = Rx<List<ClubsModel>>([]);
