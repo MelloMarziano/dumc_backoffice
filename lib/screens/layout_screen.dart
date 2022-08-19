@@ -103,7 +103,7 @@ class LayoutScreen extends StatelessWidget {
                 isSelected: _.selectedItem['selectDisciplina']!,
               ),
             ],
-            avatarImg: AssetImage('/logo/dumc.png'),
+            avatarImg: AssetImage('assets/logo/dumc.png'),
             title: 'Dumc ACD',
             onTitleTap: () {},
             body: Container(

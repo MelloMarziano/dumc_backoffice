@@ -240,8 +240,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                     height: 30,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
@@ -268,7 +267,9 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                           ),
                                         ),
                                       ),
-                                      const Spacer(),
+                                      const SizedBox(
+                                        width: 100,
+                                      ),
                                       Text(
                                         'Zona:',
                                         style: GoogleFonts.poppins(
@@ -294,7 +295,9 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                           ),
                                         ),
                                       ),
-                                      const Spacer(),
+                                      const SizedBox(
+                                        width: 100,
+                                      ),
                                       Text(
                                         'Juez:',
                                         style: GoogleFonts.poppins(
@@ -326,8 +329,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                     height: 20,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
@@ -357,7 +359,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 30,
                                       ),
                                       Text(
                                         'Niñas:',
@@ -385,7 +387,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 30,
                                       ),
                                       Text(
                                         'Total:',
@@ -415,7 +417,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 100,
                                       ),
                                       Text(
                                         'Dirigentes M:',
@@ -443,7 +445,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 30,
                                       ),
                                       Text(
                                         'Dirigentes F:',
@@ -471,7 +473,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 30,
                                       ),
                                       Text(
                                         'Total:',
@@ -501,7 +503,7 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 100,
                                       ),
                                       Text(
                                         'Total General:',
@@ -736,6 +738,48 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                       ),
                                     ],
                                   ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Triángulo / Globo / Arco del club local',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasBasicasUno,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Pañoleta',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasBasicasDos,
+                                    3,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Anillo',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasBasicasTres,
+                                    2,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Insignia de la ACD',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasBasicasCuatro,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Insignia de Cargo de Dirigentes',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasBasicasCinco,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Cordón de mando y galón de liderazgo (Charretera)',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasBasicasSeis,
+                                    5,
+                                  ),
                                   Row(
                                     children: [
                                       Container(
@@ -790,6 +834,27 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                       ),
                                     ],
                                   ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Distintivo de Clases Actual',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasClasesUno,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Botón de Clases Investidas',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasClasesDos,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Galonera de Clases Investidas (Rango)',
+                                    controller.uniformidadEvaluada.first
+                                        .insigniasClasesTres,
+                                    5,
+                                  ),
                                   Row(
                                     children: [
                                       Container(
@@ -843,6 +908,268 @@ class _UniformidadDetailModalState extends State<UniformidadDetailModal> {
                                         ),
                                       ),
                                     ],
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Banda de Especialidades',
+                                    controller.uniformidadEvaluada.first
+                                        .bandaEspecialidadesUno,
+                                    3,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Triángulo Banda / Octágono Banda',
+                                    controller.uniformidadEvaluada.first
+                                        .bandaEspecialidadesDos,
+                                    2,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- 4 Especialidades mínimas',
+                                    controller.uniformidadEvaluada.first
+                                        .bandaEspecialidadesTres,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Bandera Nacional',
+                                    controller.uniformidadEvaluada.first
+                                        .bandaEspecialidadesCuatro,
+                                    5,
+                                  ),
+                                  preguntasRespuestas(
+                                    context,
+                                    '- Distintivo de Nombre',
+                                    controller.uniformidadEvaluada.first
+                                        .bandaEspecialidadesCinco,
+                                    5,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 200,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.25,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'FALTAS GRAVES',
+                                              style: GoogleFonts.poppins(
+                                                textStyle: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              'Por cada falta grave se restará al club 5 puntos.\nSe considerarán faltas graves a las acciones definidas\ncomo no permitidas.',
+                                              style: GoogleFonts.poppins(
+                                                textStyle: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    value: controller
+                                                            .uniformidadEvaluada
+                                                            .first
+                                                            .faltaGraveUno
+                                                            .toString()
+                                                            .length >
+                                                        1,
+                                                    onChanged: (bool? value) {
+                                                      // controller.changeValueEvidencia(value);
+                                                    },
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'Uniformes Sucios',
+                                                    style: GoogleFonts.poppins(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    value: controller
+                                                            .uniformidadEvaluada
+                                                            .first
+                                                            .faltaGraveDos
+                                                            .toString()
+                                                            .length >
+                                                        1,
+                                                    onChanged: (bool? value) {
+                                                      // controller.changeValueEvidencia(value);
+                                                    },
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'Uso inadecuado de insignias y botones.',
+                                                    style: GoogleFonts.poppins(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    value: controller
+                                                            .uniformidadEvaluada
+                                                            .first
+                                                            .faltaGraveTres
+                                                            .toString()
+                                                            .length >
+                                                        1,
+                                                    onChanged: (bool? value) {
+                                                      // controller.changeValueEvidencia(value);
+                                                    },
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'Uso de prendas no avaladas por la iglesia\n(Cadenas, aretes, guillos, pulsas, etc.).',
+                                                    style: GoogleFonts.poppins(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Checkbox(
+                                                    value: controller
+                                                            .uniformidadEvaluada
+                                                            .first
+                                                            .faltaGraveCuatro
+                                                            .toString()
+                                                            .length >
+                                                        1,
+                                                    onChanged: (bool? value) {
+                                                      // controller.changeValueEvidencia(value);
+                                                    },
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    'Decir mentiras respecto a la uniformidad',
+                                                    style: GoogleFonts.poppins(
+                                                      textStyle:
+                                                          const TextStyle(
+                                                        fontSize: 14,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Observaciones',
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Container(
+                                      width: 300,
+                                      child: Text(
+                                        controller.uniformidadEvaluada.first
+                                            .observaciones,
+                                        maxLines: 10,
+                                        softWrap: true,
+                                        style: GoogleFonts.poppins(
+                                          textStyle: const TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
