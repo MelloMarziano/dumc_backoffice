@@ -7,6 +7,7 @@ import 'package:dumc_backoffice/screens/disciplina_screen.dart';
 import 'package:dumc_backoffice/screens/evaluation_screen.dart';
 import 'package:dumc_backoffice/screens/home_screen.dart';
 import 'package:dumc_backoffice/screens/quiz_screen.dart';
+import 'package:dumc_backoffice/screens/report_screen.dart';
 import 'package:dumc_backoffice/screens/user_screen.dart';
 import 'package:dumc_backoffice/screens/zonas_screen.dart';
 import 'package:flutter/material.dart';
@@ -102,8 +103,19 @@ class LayoutScreen extends StatelessWidget {
                 },
                 isSelected: _.selectedItem['selectDisciplina']!,
               ),
+              //Reportes*********
+              CollapsibleItem(
+                text: 'Reportes',
+                icon: Icons.receipt,
+                onPressed: () {
+                  _.changeSelected('selectReport');
+                  animateController.reset();
+                  _.changeView(ReportScreen());
+                },
+                isSelected: _.selectedItem['selectReport']!,
+              ),
             ],
-            avatarImg: AssetImage('assets/logo/dumc.png'),
+            avatarImg: const AssetImage('assets/logo/dumc.png'),
             title: 'Dumc ACD',
             onTitleTap: () {},
             body: Container(

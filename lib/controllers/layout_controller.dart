@@ -16,6 +16,7 @@ class LayoutController extends GetxController {
     'selectClub': false,
     //'selectUniformidad': false,
     'selectDisciplina': false,
+    'selectReport': false,
   };
 
   @override
